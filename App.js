@@ -11,7 +11,7 @@ const App = () => {
     <View style={{flex:1}}>
       {/* <WelcomePage /> */}
       {/* <Login /> */}
-      <LoginSuite />
+      {/* <LoginSuite /> */}
       {/* <SignIn /> */}
     </View>
   )

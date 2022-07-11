@@ -10,14 +10,14 @@ const LoginSuite = () => {
         </View>
         <View style={styles.boxLog}>
             <View>
-                <Text style={{bottom:90,width:"90%",alignSelf:"center",fontWeight:"bold",fontSize:20}}>DIABY LE CHIEN</Text>
-                <TextInput style={{borderWidth:1 ,backgroundColor:"red",width:"90%",alignSelf:"center",bottom:70,marginBottom:30}} placeholder='Mots de passe' />
+                <Text style={{bottom:90,width:"90%",alignSelf:"center",fontWeight:"bold",fontSize:20,color:'#4D3A34'}}>DIABY LE CHIEN</Text>
+                <TextInput style={{backgroundColor:"#8C7974",width:"90%",alignSelf:"center",bottom:70,marginBottom:30, borderRadius:8,height:60}} placeholder='Mots de passe' />
             </View>
             <View style={{height:70,width:"90%",alignSelf:"center"}}>
             <TouchableOpacity style={{width:"90%",alignSelf:"center",height:44,borderRadius:8,justifyContent:"center",backgroundColor:"#ffff",marginTop:-60}}>
                 <Text style={{alignSelf:"center",fontWeight:"bold",color:"black"}}>CONTINUER</Text>
             </TouchableOpacity>
-        <Text style={{width:"90%",alignSelf:"center",marginTop:30}}>Vous avez oublié votre mots de passe?</Text>
+        <Text style={{width:"90%",alignSelf:"center",marginTop:30,color:'#4D3A34'}}>Vous avez oublié votre mots de passe?</Text>
             </View>
         </View>
     </View>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
          bottom:20,
          borderRadius:10,
          backgroundColor:"#ffff",
-         opacity:0.3,
+         opacity:0.8,
        }
          
 })

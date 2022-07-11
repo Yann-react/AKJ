@@ -11,12 +11,12 @@ const Signin = () => {
         </View>
         <View style={styles.boxLog}>
             <View>
-                <TextInput style={{borderWidth:1 ,backgroundColor:"red",width:"90%",alignSelf:"center",bottom:70,marginBottom:30}} placeholder='Nom'  />
-                <TextInput style={{borderWidth:1 ,backgroundColor:"red",width:"90%",alignSelf:"center",bottom:70}} placeholder='Email'  />
-                <TextInput style={{borderWidth:1 ,backgroundColor:"red",width:"90%",alignSelf:"center",bottom:70,marginTop:30}} placeholder='Mots de passe'  />
+                <TextInput style={{backgroundColor:"#8C7974",borderRadius:8,width:"90%",alignSelf:"center",bottom:70,marginBottom:30}} placeholder='Nom'  />
+                <TextInput style={{backgroundColor:"#8C7974",borderRadius:8,width:"90%",alignSelf:"center",bottom:70}} placeholder='Email'  />
+                <TextInput style={{backgroundColor:"#8C7974",borderRadius:8,width:"90%",alignSelf:"center",bottom:70,marginTop:30}} placeholder='Mots de passe'  />
             </View>
             <View style={{height:70,width:"90%",alignSelf:"center"}}>
-                <Text style={{marginBottom:30}}>* J'ai lu et j'accepte les conditions d'utilisation et la politique de confidentialité de akj.</Text>
+                <Text style={{marginBottom:30,color:'#4D3A34'}}>* J'ai lu et j'accepte les conditions d'utilisation et la politique de confidentialité de akj.</Text>
             <TouchableOpacity style={{width:"90%",alignSelf:"center",height:44,borderRadius:8,justifyContent:"center",backgroundColor:"#ffff",marginTop:10}}>
                 <Text style={{alignSelf:"center",fontWeight:"bold",color:"black"}}>J'accepte et continue</Text>
             </TouchableOpacity>
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
          bottom:20,
          borderRadius:10,
          backgroundColor:"#ffff",
-         opacity:0.3,
+         opacity:0.8,
        }
 })

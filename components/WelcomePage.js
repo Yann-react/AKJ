@@ -7,7 +7,7 @@ const WelcomePage = () => {
       <Image source={require('../assets/akj.jpg')} style={styles.image} />
         <Text style={styles.text}>FAITE VOS ACHAT TOUT EN VOUS FAISANT DE L’ARGENT</Text>
         <TouchableOpacity style={styles.button}>
-          <Text style={{fontWeight:"bold",alignSelf:"center"}}>COMMENCER</Text>
+          <Text style={{fontWeight:"bold",alignSelf:"center",color:'#4D3A34'}}>COMMENCER</Text>
         </TouchableOpacity>
       </View>
     </View>
