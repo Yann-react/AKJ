@@ -17,7 +17,7 @@ const Signin = () => {
           style={{
             color: '#ffff',
             fontSize: 35,
-            marginTop: -100,
+            marginTop: -130,
             fontWeight: 'bold',
             left: 10,
           }}>
@@ -60,7 +60,7 @@ const Signin = () => {
           />
         </View>
         <View style={{height: 70, width: '90%', alignSelf: 'center'}}>
-          <Text style={{marginBottom: 30, color: '#4D3A34'}}>
+          <Text style={{marginTop:-30, color: '#4D3A34',fontWeight:'bold'}}>
             * J'ai lu et j'accepte les conditions d'utilisation et la politique
             de confidentialité de akj.
           </Text>
@@ -72,7 +72,7 @@ const Signin = () => {
               borderRadius: 8,
               justifyContent: 'center',
               backgroundColor: '#ffff',
-              marginTop: 10,
+              marginTop: 35,
             }}>
             <Text
               style={{alignSelf: 'center', fontWeight: 'bold', color: 'black'}}>

@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-const WelcomePage = () => {
+const WelcomePage = (props) => {
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
@@ -8,7 +8,7 @@ const WelcomePage = () => {
         <Text style={styles.text}>
           FAITE VOS ACHAT TOUT EN VOUS FAISANT DE L’ARGENT
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={()=>props.navigation.navigate("Login")}>
           <Text
             style={{fontWeight: 'bold', alignSelf: 'center', color: '#4D3A34'}}>
             COMMENCER

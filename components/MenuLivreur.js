@@ -1,7 +1,11 @@
 import {StyleSheet, Text, View,TouchableOpacity} from 'react-native';
-import React from 'react';
+import React,{useState} from 'react';
 
 const MenuLivreur = () => {
+    const [value,setValue]=useState(0)
+    const but = ()=>{
+        setValue(value+1)
+    }
   return (
     <View style={styles.wallet}>
       <View>
@@ -41,7 +45,9 @@ const MenuLivreur = () => {
               backgroundColor: 'gray',
               alignSelf: 'center',
               top: 50,
-            }}></TouchableOpacity>
+            }}
+            onPress={but}
+            ></TouchableOpacity>
           <Text
             style={{
               color: 'black',
@@ -49,7 +55,7 @@ const MenuLivreur = () => {
               top: 60,
               fontWeight: 'bold',
             }}>
-            Adresse
+            Adressesss
           </Text>
          </View>
          <View>
@@ -70,7 +76,7 @@ const MenuLivreur = () => {
               top: 60,
               fontWeight: 'bold',
             }}>
-            Adresse
+            Adresse {value}
           </Text>
          </View>
          

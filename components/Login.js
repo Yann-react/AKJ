@@ -9,8 +9,13 @@ import {
 } from 'react-native';
 import React from 'react';
 
-const Login = () => {
+const Login = props => {
   const image = require('../assets/akj.jpg');
+  const Togo = () => {
+    props.navigation.push('LoginSuite', {
+      nom: 'DIaby',
+    });
+  };
   return (
     <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
       {/* <ImageBackground source={image} resizeMode="cover" style={styles.image}> */}
@@ -20,9 +25,9 @@ const Login = () => {
       </View>
       <View style={styles.boxLog}>
         <TextInput style={styles.inputEmail} placeholder="Email" />
-        <TouchableOpacity style={styles.buttomCon}>
+        <TouchableOpacity style={styles.buttomCon} onPress={Togo}>
           <Text
-            style={{alignSelf: 'center', fontWeight: 'bold', color: 'black'}}>
+            style={{alignSelf: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
             CONTINUER
           </Text>
         </TouchableOpacity>
@@ -32,6 +37,7 @@ const Login = () => {
             fontSize: 20,
             fontWeight: 'bold',
             marginTop: 10,
+            color:'#45342F'
           }}>
           OU
         </Text>
@@ -46,7 +52,7 @@ const Login = () => {
             backgroundColor: '#ffff',
           }}>
           <Text
-            style={{alignSelf: 'center', fontWeight: 'bold', color: 'black'}}>
+            style={{alignSelf: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
             Continuez sur Google
           </Text>
         </TouchableOpacity>
@@ -58,8 +64,14 @@ const Login = () => {
             width: '90%',
             alignSelf: 'center',
           }}>
-          <Text>Vous n'avez pas de compte ? Incription</Text>
-          <Text>Vous avez oublié votre mots de passe?</Text>
+          <Text
+            style={{alignSelf: 'center', color: '#4D3A34', fontWeight: 'bold'}} onPress={()=>props.navigation.push('SignIn')}>
+            Vous n'avez pas de compte ? Incription
+          </Text>
+          <Text
+            style={{alignSelf: 'center', color: '#4D3A34', fontWeight: 'bold'}}>
+            Vous avez oublié votre mots de passe?
+          </Text>
         </View>
       </View>
       {/* </ImageBackground> */}
@@ -77,7 +89,7 @@ const styles = StyleSheet.create({
   },
   boxLog: {
     flex: 1,
-    paddingTop: 120,
+    paddingTop: 110,
     width: '95%',
     alignSelf: 'center',
     bottom: 20,
@@ -88,7 +100,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#ffff',
     fontSize: 35,
-    marginTop: -100,
+    marginTop: -130,
     fontWeight: 'bold',
     left: 10,
   },

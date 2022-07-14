@@ -6,9 +6,10 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import React from 'react';
+import React , {useEffect}from 'react';
 
-const LoginSuite = () => {
+const LoginSuite = (props) => {
+    
   return (
     <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
       <View style={{flex: 1}}>
@@ -17,7 +18,7 @@ const LoginSuite = () => {
           style={{
             color: '#ffff',
             fontSize: 35,
-            marginTop: -100,
+            marginTop: -130,
             fontWeight: 'bold',
             left: 10,
           }}>
@@ -35,7 +36,7 @@ const LoginSuite = () => {
               fontSize: 20,
               color: '#4D3A34',
             }}>
-            DIABY LE CHIEN
+            {props.route.params.nom}
           </Text>
           <TextInput
             style={{
@@ -60,18 +61,18 @@ const LoginSuite = () => {
               justifyContent: 'center',
               backgroundColor: '#ffff',
               marginTop: -60,
-            }}>
+            }}  onPress={()=> props.navigation.push('WalletClient')}>
             <Text
-              style={{alignSelf: 'center', fontWeight: 'bold', color: 'black'}}>
+              style={{alignSelf: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
               CONTINUER
             </Text>
           </TouchableOpacity>
           <Text
             style={{
-              width: '90%',
               alignSelf: 'center',
-              marginTop: 30,
+              marginTop: 50,
               color: '#4D3A34',
+              fontWeight:'bold'
             }}>
             Vous avez oublié votre mots de passe?
           </Text>
