@@ -6,10 +6,30 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import React , {useEffect}from 'react';
 
-const LoginSuite = (props) => {
-    
+import React, {useState} from 'react';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+
+const LoginSuite = props => {
+  const [password, setPassword] = useState('');
+
+  const onLogin = () => {
+    auth()
+  .signInWithEmailAndPassword(props.route.params.Email,password)
+  .then((resp)=>{return firestore.collection('users')
+  .doc(resp.user.uid)
+  .get()
+  .then((response)=>{
+    console.log('ok')
+    response.data()
+  })})
+  .catch((error)=>{
+    console.log(error)
+  })
+    console.log(props.route.params.Email, password);
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
       <View style={{flex: 1}}>
@@ -49,6 +69,8 @@ const LoginSuite = (props) => {
               height: 60,
             }}
             placeholder="Mots de passe"
+            onChangeText={password => setPassword(password)}
+            value={password}
           />
         </View>
         <View style={{height: 70, width: '90%', alignSelf: 'center'}}>
@@ -61,9 +83,14 @@ const LoginSuite = (props) => {
               justifyContent: 'center',
               backgroundColor: '#ffff',
               marginTop: -60,
-            }}  onPress={()=> props.navigation.push('WalletClient')}>
+            }}
+            onPress={() => onLogin()}>
             <Text
-              style={{alignSelf: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
+              style={{
+                alignSelf: 'center',
+                fontWeight: 'bold',
+                color: '#4D3A34',
+              }}>
               CONTINUER
             </Text>
           </TouchableOpacity>
@@ -72,7 +99,7 @@ const LoginSuite = (props) => {
               alignSelf: 'center',
               marginTop: 50,
               color: '#4D3A34',
-              fontWeight:'bold'
+              fontWeight: 'bold',
             }}>
             Vous avez oublié votre mots de passe?
           </Text>

@@ -7,15 +7,21 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import React from 'react';
+import React ,{useState} from 'react';
 
 const Login = props => {
+
+
+  const [email,setEmail]=useState('')
+
   const image = require('../assets/akj.jpg');
+
   const Togo = () => {
     props.navigation.push('LoginSuite', {
-      nom: 'DIaby',
+      Email:email
     });
   };
+
   return (
     <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
       {/* <ImageBackground source={image} resizeMode="cover" style={styles.image}> */}
@@ -24,7 +30,8 @@ const Login = props => {
         <Text style={styles.titleText}>Bienvenue</Text>
       </View>
       <View style={styles.boxLog}>
-        <TextInput style={styles.inputEmail} placeholder="Email" />
+        <TextInput style={styles.inputEmail} placeholder="Email" onChangeText={email=>setEmail(email)}
+            value={email} />
         <TouchableOpacity style={styles.buttomCon} onPress={Togo}>
           <Text
             style={{alignSelf: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
@@ -37,7 +44,7 @@ const Login = props => {
             fontSize: 20,
             fontWeight: 'bold',
             marginTop: 10,
-            color:'#45342F'
+            color: '#45342F',
           }}>
           OU
         </Text>
@@ -65,7 +72,8 @@ const Login = props => {
             alignSelf: 'center',
           }}>
           <Text
-            style={{alignSelf: 'center', color: '#4D3A34', fontWeight: 'bold'}} onPress={()=>props.navigation.push('SignIn')}>
+            style={{alignSelf: 'center', color: '#4D3A34', fontWeight: 'bold'}}
+            onPress={() => props.navigation.push('SignIn')}>
             Vous n'avez pas de compte ? Incription
           </Text>
           <Text
