@@ -8,17 +8,33 @@ import {
   ImageBackground,
 } from 'react-native';
 import React ,{useState} from 'react';
+import firestore from '@react-native-firebase/firestore';
 
 const Login = props => {
 
 
   const [email,setEmail]=useState('')
+  const [nom,setNom]=useState('')
+
 
   const image = require('../assets/akj.jpg');
 
   const Togo = () => {
-    props.navigation.push('LoginSuite', {
-      Email:email
+    firestore()
+    .collection('Users')
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        if (documentSnapshot.data().email == email){
+           setNom(documentSnapshot.data().nom)
+           console.log(nom)
+            props.navigation.push('LoginSuite', {
+              Email:email,
+              Nom:nom
+            });
+        }
+          
+      });
     });
   };
 
@@ -32,7 +48,7 @@ const Login = props => {
       <View style={styles.boxLog}>
         <TextInput style={styles.inputEmail} placeholder="Email" onChangeText={email=>setEmail(email)}
             value={email} />
-        <TouchableOpacity style={styles.buttomCon} onPress={Togo}>
+        <TouchableOpacity style={styles.buttomCon} onPress={() => Togo()}>
           <Text
             style={{alignSelf: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
             CONTINUER

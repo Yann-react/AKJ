@@ -9,27 +9,31 @@ import {
 
 import React, {useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import auth from '@react-native-firebase/auth';
 
 const LoginSuite = props => {
   const [password, setPassword] = useState('');
-
+  const [nom,setNom]=useState('')
+  const [solde,setSolde]=useState('')
   const onLogin = () => {
-    auth()
-  .signInWithEmailAndPassword(props.route.params.Email,password)
-  .then((resp)=>{return firestore.collection('users')
-  .doc(resp.user.uid)
-  .get()
-  .then((response)=>{
-    console.log('ok')
-    response.data()
-  })})
-  .catch((error)=>{
-    console.log(error)
-  })
-    console.log(props.route.params.Email, password);
+    firestore()
+    .collection('Users')
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        if (documentSnapshot.data().email == props.route.params.Email & documentSnapshot.data().password == password){
+            
+            setNom(documentSnapshot.data().nom)
+            setSolde(documentSnapshot.data().solde)
+            props.navigation.push('WalletClient',{
+              Nom:nom,
+              Solde:solde
+            })
+        }
+      });
+    });
+    // console.log(props.route.params.Email, password);
+  
   };
-
   return (
     <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
       <View style={{flex: 1}}>
@@ -56,7 +60,7 @@ const LoginSuite = props => {
               fontSize: 20,
               color: '#4D3A34',
             }}>
-            {props.route.params.nom}
+            {props.route.params.Nom}
           </Text>
           <TextInput
             style={{

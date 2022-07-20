@@ -7,7 +7,7 @@ import {
   TextInput,
 } from 'react-native';
 import React, {useState} from 'react';
-import axios from 'axios';
+import firestore from '@react-native-firebase/firestore';
 const Signin = props => {
   const [nom, setNom] = useState('');
   const [email, setEmail] = useState('');
@@ -16,20 +16,21 @@ const Signin = props => {
   const [titre, setTitre] = useState('client');
 
   const onSignUp = () => {
-    axios
-      .post('http://localhost:3001/api/signIn', {
-        nom: nom,
-        email: email,
-        password: password,
-        solde: solde,
-        titre: titre,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    firestore()
+    .collection('Users')
+    .add({
+        nom:nom,
+        email:email,
+        password:password,
+        solde:solde,
+        titre:titre
+    })
+    .then(() => {
+      console.log('User added!');
+      props.navigation.push('WalletClient')
+    }).catch((error)=>{
+      console.log(error)
+    })
   };
 
   return (

@@ -9,7 +9,9 @@ const MenuLivreur = () => {
   return (
     <View style={styles.wallet}>
       <View>
-        <Text style={{color: '#4D3A34', fontWeight: 'bold', top: 50, left: 70}}>
+        <Text style={{fontWeight: 'bold', top: 50, left: 70,
+              color:'#ffff'
+            }}>
           Client
         </Text>
       </View>
@@ -24,15 +26,19 @@ const MenuLivreur = () => {
               backgroundColor: 'gray',
               alignSelf: 'center',
               top: 50,
+              backgroundColor:'#8C7974'
+
             }}></TouchableOpacity>
           <Text
             style={{
-              color: 'black',
               alignSelf: 'center',
               top: 60,
               fontWeight: 'bold',
+              width:90,
+              textAlign:'center',
+              color:'#ffff'
             }}>
-            Adresse
+            Payement par point
           </Text>
          </View>
          <View>
@@ -45,17 +51,22 @@ const MenuLivreur = () => {
               backgroundColor: 'gray',
               alignSelf: 'center',
               top: 50,
+              backgroundColor:'#8C7974'
+
+
             }}
             onPress={but}
             ></TouchableOpacity>
           <Text
             style={{
-              color: 'black',
               alignSelf: 'center',
               top: 60,
               fontWeight: 'bold',
+              color:'#ffff'
+
+            
             }}>
-            Adressesss
+            Porte Feuille
           </Text>
          </View>
          <View>
@@ -68,15 +79,20 @@ const MenuLivreur = () => {
               backgroundColor: 'gray',
               alignSelf: 'center',
               top: 50,
+              backgroundColor:'#8C7974'
+              
             }}></TouchableOpacity>
           <Text
             style={{
-              color: 'black',
               alignSelf: 'center',
               top: 60,
               fontWeight: 'bold',
+              width:90,
+              textAlign:'center',
+              color:'#ffff'
+
             }}>
-            Adresse {value}
+            Payement en espèce
           </Text>
          </View>
          
@@ -90,6 +106,6 @@ export default MenuLivreur;
 const styles = StyleSheet.create({
   wallet: {
     flex: 1,
-    backgroundColor: '#ffff',
+    backgroundColor: '#4D3A34',
   },
 });
