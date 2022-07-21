@@ -21,13 +21,23 @@ const LoginSuite = props => {
     .then(querySnapshot => {
       querySnapshot.forEach(documentSnapshot => {
         if (documentSnapshot.data().email == props.route.params.Email & documentSnapshot.data().password == password){
-            
-            setNom(documentSnapshot.data().nom)
-            setSolde(documentSnapshot.data().solde)
-            props.navigation.push('WalletClient',{
-              Nom:nom,
-              Solde:solde
-            })
+            if(documentSnapshot.data().titre=='livreur'){
+              setNom(documentSnapshot.data().nom)
+              setSolde(documentSnapshot.data().solde)
+              props.navigation.push('MenuLivreur',{
+                Nom:nom,
+                Solde:solde
+              })
+            }else if (documentSnapshot.data().titre=='client'){
+              setNom(documentSnapshot.data().nom)
+              setSolde(documentSnapshot.data().solde)
+              props.navigation.push('WalletClient',{
+                Nom:nom,
+                Solde:solde,
+                Email:documentSnapshot.data().email
+
+              })
+            }
         }
       });
     });

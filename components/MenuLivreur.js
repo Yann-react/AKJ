@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View,TouchableOpacity} from 'react-native';
 import React,{useState} from 'react';
 
-const MenuLivreur = () => {
+const MenuLivreur = (props) => {
     const [value,setValue]=useState(0)
     const but = ()=>{
         setValue(value+1)
@@ -27,8 +27,9 @@ const MenuLivreur = () => {
               alignSelf: 'center',
               top: 50,
               backgroundColor:'#8C7974'
-
-            }}></TouchableOpacity>
+            }}
+            onPress={()=>props.navigation.push('ViewPayementPoint')}
+            ></TouchableOpacity>
           <Text
             style={{
               alignSelf: 'center',
@@ -55,7 +56,7 @@ const MenuLivreur = () => {
 
 
             }}
-            onPress={but}
+            onPress={()=>props.navigation.push('WalletLivreur')}
             ></TouchableOpacity>
           <Text
             style={{
@@ -63,9 +64,8 @@ const MenuLivreur = () => {
               top: 60,
               fontWeight: 'bold',
               color:'#ffff'
-
-            
-            }}>
+            }} 
+            >
             Porte Feuille
           </Text>
          </View>
@@ -81,7 +81,10 @@ const MenuLivreur = () => {
               top: 50,
               backgroundColor:'#8C7974'
               
-            }}></TouchableOpacity>
+            }}
+            onPress={()=>props.navigation.push('ViewPayementEspece')}
+
+            ></TouchableOpacity>
           <Text
             style={{
               alignSelf: 'center',
@@ -90,8 +93,9 @@ const MenuLivreur = () => {
               width:90,
               textAlign:'center',
               color:'#ffff'
-
-            }}>
+              
+            }}
+            >
             Payement en espèce
           </Text>
          </View>

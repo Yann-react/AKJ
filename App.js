@@ -14,8 +14,9 @@ import MenuLivreur from './components/MenuLivreur';
 import ViewPayementEspece from './components/ViewPayementEspece';
 import ViewPayementPoint from './components/ViewPayementPoint';
 import ViewScan from './components/ViewScan';
-
 import {ViewPropTypes} from 'deprecated-react-native-prop-types';
+
+
 const {Navigator, Screen} = createNativeStackNavigator();
 
 const App = () => {
@@ -63,7 +64,9 @@ const App = () => {
           <Screen name="WalletClient" component={WalletClient} />
           <Screen name="WalletLivreur" component={WalletLivreur} />
           <Screen name="DetailComponent" component={DetailComponent} />
-          <Screen name="MenuLivreur" component={MenuLivreur} /> */}
+          <Screen name="MenuLivreur" component={MenuLivreur} />
+          <Screen name="ViewPayementEspece" component={ViewPayementEspece} />
+          <Screen name="ViewPayementPoint" component={ViewPayementPoint} /> */}
           {/* <WelcomePage /> */}
           {/* <Login /> */}
           {/* <LoginSuite /> */}
@@ -72,8 +75,8 @@ const App = () => {
           {/* <DetailComponent /> */}
           {/* <WalletLivreur /> */}
           {/* <MenuLivreur /> */}
-          {/* <ViewPayementEspece /> */}
-          <ViewScan />
+          <ViewPayementEspece />
+          {/* <ViewScan /> */}
           {/* <ViewPayementPoint /> */}
         {/* </Navigator>
       </NavigationContainer> */}
