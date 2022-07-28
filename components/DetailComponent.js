@@ -1,30 +1,49 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, { useEffect, useState } from 'react';
-import firestore from '@react-native-firebase/firestore';
-
+import axios from 'react-native-axios'
 const DetailComponent = (props) => {
   const [code,setCode]=useState(0)
-  
+  const [nom,setNom]=useState('')
   useEffect(()=>{
-    // setCode(parseInt(Math.random()*10000000))
-    firestore()
-  .collection('Users')
-  .get()
-  .then(querySnapshot => {
-    querySnapshot.forEach(documentSnapshot => {
-      // console.log('User ID: ',documentSnapshot.id, documentSnapshot.data().codeWallet);
-      if(documentSnapshot.data().email==props.route.params.Email){
-        setCode(documentSnapshot.data().codeWallet)
+    axios
+    .post(`http://10.0.2.2:3001/api/getAdresse`, {
+      email: props.route.params.Email,
+    })
+    .then(res => {
+      // console.log(res);
+      console.log(res.data);
+      setCode(res.data)
+    })
+    .catch(error => {
+      if (error.response) {
+        console.log('rror sur rsp');
+      } else if (error.request) {
+        console.log('error sur requet');
       }
     });
-  });
+    axios
+    .post(`http://10.0.2.2:3001/api/getNom`, {
+      email: props.route.params.Email,
+    })
+    .then(res => {
+      // console.log(res);
+      console.log(res.data);
+      setNom(res.data)
+    })
+    .catch(error => {
+      if (error.response) {
+        console.log('rror sur rsp');
+      } else if (error.request) {
+        console.log('error sur requet');
+      }
+    });   
   },[])
  
   return (
     <View style={styles.wallet}>
       <View>
         <Text style={{color: '#ffff', fontWeight: 'bold', top: 50, left: 70}}>
-          Client
+          {nom}
         </Text>
       </View>
       <View style={{flex:0.8,justifyContent:'center',alignItems:'center'}}>

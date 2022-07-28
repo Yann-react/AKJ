@@ -1,13 +1,52 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {TabRouter} from '@react-navigation/native';
+import axios from 'react-native-axios';
 
 const WalletClient = props => {
+  const [nom,setNom]=useState('')
+  const [solde,setSolde]=useState(0)
+
+  useEffect(() => {
+    axios
+      .post(`http://10.0.2.2:3001/api/getNom`, {
+        email: props.route.params.Email,
+      })
+      .then(res => {
+        // console.log(res);
+        console.log(res.data);
+        setNom(res.data)
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log('rror sur rsp');
+        } else if (error.request) {
+          console.log('error sur requet');
+        }
+      });
+      axios
+      .post(`http://10.0.2.2:3001/api/getSolde`, {
+        email: props.route.params.Email,
+      })
+      .then(res => {
+        // console.log(res);
+        console.log(res.data);
+        setSolde(res.data)
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log('rror sur rsp');
+        } else if (error.request) {
+          console.log('error sur requet');
+        }
+      });
+  }, []);
+  console.log(props.route.params.Email);
   return (
     <View style={styles.wallet}>
       <View>
         <Text style={{color: '#ffff', fontWeight: 'bold', top: 50, left: 70}}>
-          {props.route.params.Nom}
+          {nom}
         </Text>
       </View>
       <View style={{top: 100, flex: 1}}>
@@ -19,7 +58,7 @@ const WalletClient = props => {
             fontSize: 80,
             fontWeight: 'bold',
           }}>
-          K {props.route.params.Solde}
+          K {solde}
         </Text>
         <View>
           <TouchableOpacity
@@ -31,8 +70,11 @@ const WalletClient = props => {
               alignSelf: 'center',
               top: 50,
             }}
-            onPress={()=>props.navigation.push('DetailComponent',{Email:props.route.params.Email})}
-            ></TouchableOpacity>
+            onPress={() =>
+              props.navigation.push('DetailComponent', {
+                Email: props.route.params.Email,
+              })
+            }></TouchableOpacity>
           <Text
             style={{
               color: '#ffff',

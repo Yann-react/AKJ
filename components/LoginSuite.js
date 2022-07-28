@@ -8,40 +8,32 @@ import {
 } from 'react-native';
 
 import React, {useState} from 'react';
-import firestore from '@react-native-firebase/firestore';
-
+import axios from 'react-native-axios'
 const LoginSuite = props => {
   const [password, setPassword] = useState('');
   const [nom,setNom]=useState('')
   const [solde,setSolde]=useState('')
   const onLogin = () => {
-    firestore()
-    .collection('Users')
-    .get()
-    .then(querySnapshot => {
-      querySnapshot.forEach(documentSnapshot => {
-        if (documentSnapshot.data().email == props.route.params.Email & documentSnapshot.data().password == password){
-            if(documentSnapshot.data().titre=='livreur'){
-              setNom(documentSnapshot.data().nom)
-              setSolde(documentSnapshot.data().solde)
-              props.navigation.push('MenuLivreur',{
-                Nom:nom,
-                Solde:solde
-              })
-            }else if (documentSnapshot.data().titre=='client'){
-              setNom(documentSnapshot.data().nom)
-              setSolde(documentSnapshot.data().solde)
-              props.navigation.push('WalletClient',{
-                Nom:nom,
-                Solde:solde,
-                Email:documentSnapshot.data().email
+    axios.post(`http://10.0.2.2:3001/api/Login`,
+    {email:props.route.params.Email,
+    password:password
+  })
+    .then(res => {
+        // console.log(res);
+        // console.log(res.data)
+      // console.log(res.data.succes)
 
-              })
-            }
-        }
-      });
-    });
-    // console.log(props.route.params.Email, password);
+        props.navigation.push("WalletClient",{
+          Email: props.route.params.Email
+        })
+    })
+    .catch(error =>{
+      if(error.response){
+          console.log("rror sur rsp")
+      }else if (error.request){
+      console.log("error sur requet")
+      }                  
+})
   
   };
   return (
@@ -70,7 +62,7 @@ const LoginSuite = props => {
               fontSize: 20,
               color: '#4D3A34',
             }}>
-            {props.route.params.Nom}
+            {props.route.params.Email}
           </Text>
           <TextInput
             style={{

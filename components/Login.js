@@ -8,34 +8,19 @@ import {
   ImageBackground,
 } from 'react-native';
 import React ,{useState} from 'react';
-import firestore from '@react-native-firebase/firestore';
 
 const Login = props => {
 
 
   const [email,setEmail]=useState('')
-  const [nom,setNom]=useState('')
 
 
   const image = require('../assets/akj.jpg');
 
   const Togo = () => {
-    firestore()
-    .collection('Users')
-    .get()
-    .then(querySnapshot => {
-      querySnapshot.forEach(documentSnapshot => {
-        if (documentSnapshot.data().email == email){
-           setNom(documentSnapshot.data().nom)
-           console.log(nom)
-            props.navigation.push('LoginSuite', {
-              Email:email,
-              Nom:nom
+      props.navigation.push('LoginSuite', {
+      Email:email,
             });
-        }
-          
-      });
-    });
   };
 
   return (

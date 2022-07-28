@@ -6,32 +6,55 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import React, {useState} from 'react';
-import firestore from '@react-native-firebase/firestore';
+import React, {useEffect, useState} from 'react';
+import axios from 'react-native-axios';
+
 const Signin = props => {
   const [nom, setNom] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [solde, setSolde] = useState(200);
   const [titre, setTitre] = useState('client');
+  const [adresse, setAdresse] = useState(0);
+
+  const random=()=>{
+      const  nbre = parseInt(Math.random()*1000000)
+      if (nbre.lenght<6){
+        nbre = parseInt(Math.random()*1000000)
+      }
+      setAdresse(nbre)
+  }
 
   const onSignUp = () => {
-    firestore()
-    .collection('Users')
-    .add({
-        nom:nom,
-        email:email,
-        password:password,
-        solde:solde,
-        titre:titre
+    axios.post(`http://localhost/api/signIn`,
+    {email:email,
+    nom:nom,
+    solde:solde,
+    titre:titre,
+    password:password,
+    adresse:adresse
+  })
+    .then(res => {
+        // console.log(res);
+        // console.log(res.data)
+        console.log("ok")
+        props.navigation.push("WalletClient",{
+            Email: email
+        })
+
     })
-    .then(() => {
-      console.log('User added!');
-      props.navigation.push('WalletClient')
-    }).catch((error)=>{
-      console.log(error)
-    })
+    .catch(error =>{
+      if(error.response){
+          console.log("rror sur rsp")
+      }else if (error.request){
+      console.log("error sur requet")
+      }                  
+})
   };
+
+  useEffect(()=>{
+    random()
+  },[])
 
   return (
     <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
@@ -104,7 +127,7 @@ const Signin = props => {
               backgroundColor: '#ffff',
               marginTop: 35,
             }}
-            onPress={() => onSignUp()}>
+            onPress={onSignUp}>
             <Text
               style={{alignSelf: 'center', fontWeight: 'bold', color: 'black'}}>
               J'accepte et continue

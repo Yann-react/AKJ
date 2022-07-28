@@ -1,11 +1,9 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
-import firestore from '@react-native-firebase/firestore';
 
 const WelcomePage = props => {
- 
- 
 
+  
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#4D3A34'}}>

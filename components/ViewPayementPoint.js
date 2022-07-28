@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View,TextInput,TouchableOpacity } from 'react-native'
 import React from 'react'
+import axios from 'react-native-axios'
 
 export default function ViewPayementPoint() {
   return (
