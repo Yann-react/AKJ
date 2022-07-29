@@ -12,19 +12,19 @@ import axios from 'react-native-axios';
 export default function ViewPayementEspece() {
   const [adresse, setAdresse] = useState(0);
   const [montant, setMontant] = useState(0);
-  const [id,setId]=useState('')
+  const [id, setId] = useState('');
 
   const sendPoint = () => {
-      const nbre = montant*0.001
-      setMontant(parseInt(nbre))
-      console.log(montant)
-      axios
+    const nbre = montant * 0.001;
+    setMontant(parseInt(nbre));
+    console.log(montant);
+    axios
       .post(`http://10.0.2.2:3001/api/getId`, {
-        adresse:adresse,
+        adresse: adresse,
       })
       .then(res => {
-          setId(res.data)
-        console.log(id)
+        setId(res.data);
+        console.log(id);
         // console.log(res.data)
       })
       .catch(error => {
@@ -35,20 +35,20 @@ export default function ViewPayementEspece() {
         }
       });
     axios
-    .put(`http://10.0.2.2:3001/api/sendPoint/${id}`, {
-      solde:montant
-    })
-    .then(res => {
-      // console.log(res)
-      console.log("ok")
-    })
-    .catch(error => {
-      if (error.response) {
-        console.log('rror sur rsp');
-      } else if (error.request) {
-        console.log('error sur requet');
-      }
-    });
+      .put(`http://10.0.2.2:3001/api/sendPoint/${id}`, {
+        solde: montant,
+      })
+      .then(res => {
+        // console.log(res)
+        console.log('ok');
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log('rror sur rsp');
+        } else if (error.request) {
+          console.log('error sur requet');
+        }
+      });
   };
   return (
     <View style={styles.wallet}>

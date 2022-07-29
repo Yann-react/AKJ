@@ -22,10 +22,16 @@ const LoginSuite = props => {
         // console.log(res);
         // console.log(res.data)
       // console.log(res.data.succes)
-
+      // console.log(res.data.titre)
+      if(res.data.titre == 'client'){
         props.navigation.push("WalletClient",{
           Email: props.route.params.Email
         })
+      }else{
+        props.navigation.push("MenuLivreur",{
+          Email: props.route.params.Email
+        })
+      }
     })
     .catch(error =>{
       if(error.response){

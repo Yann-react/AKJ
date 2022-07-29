@@ -1,18 +1,34 @@
 import {StyleSheet, Text, View,TouchableOpacity} from 'react-native';
-import React,{useState} from 'react';
-
+import React,{useEffect, useState} from 'react';
+import axios from 'react-native-axios'
 const MenuLivreur = (props) => {
-    const [value,setValue]=useState(0)
-    const but = ()=>{
-        setValue(value+1)
-    }
+  const [nom,setNom]=useState('')
+
+      useEffect(()=>{
+        axios
+        .post(`http://10.0.2.2:3001/api/getNom`, {
+          email: props.route.params.Email,
+        })
+        .then(res => {
+          // console.log(res);
+          console.log(res.data);
+          setNom(res.data)
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log('rror sur rsp');
+          } else if (error.request) {
+            console.log('error sur requet');
+          }
+        });
+      },[])
   return (
     <View style={styles.wallet}>
       <View>
         <Text style={{fontWeight: 'bold', top: 50, left: 70,
               color:'#ffff'
             }}>
-          Client
+          {nom}
         </Text>
       </View>
       <View style={{display:'flex',flexDirection:'row',justifyContent:'center',justifyContent:'space-evenly',marginTop:290}}>
@@ -28,7 +44,7 @@ const MenuLivreur = (props) => {
               top: 50,
               backgroundColor:'#8C7974'
             }}
-            onPress={()=>props.navigation.push('ViewPayementPoint')}
+            onPress={()=>props.navigation.push('ViewPayementPoint',{Email: props.route.params.Email})}
             ></TouchableOpacity>
           <Text
             style={{
@@ -56,7 +72,7 @@ const MenuLivreur = (props) => {
 
 
             }}
-            onPress={()=>props.navigation.push('WalletLivreur')}
+            onPress={()=>props.navigation.push('WalletLivreur',{Email: props.route.params.Email})}
             ></TouchableOpacity>
           <Text
             style={{
