@@ -22,7 +22,7 @@ const {Navigator, Screen} = createNativeStackNavigator();
 const App = () => {
   return (
     <View style={{flex: 1}}>
-      <NavigationContainer>
+       <NavigationContainer>
         <Navigator>
           <Screen
             name="WelcomePage"
@@ -66,12 +66,12 @@ const App = () => {
           <Screen name="DetailComponent" component={DetailComponent} />
           <Screen name="MenuLivreur" component={MenuLivreur} />
           <Screen name="ViewPayementEspece" component={ViewPayementEspece} />
-          <Screen name="ViewPayementPoint" component={ViewPayementPoint} />
+          <Screen name="ViewPayementPoint" component={ViewPayementPoint} /> 
           {/* <WelcomePage /> */}
           {/* <Login /> */}
           {/* <LoginSuite /> */}
           {/* <SignIn /> */}
-          {/* <WalletClient /> */}
+          {/* <WalletClient />   */}
           {/* <DetailComponent /> */}
           {/* <WalletLivreur /> */}
           {/* <MenuLivreur /> */}

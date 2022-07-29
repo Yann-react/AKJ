@@ -1,27 +1,28 @@
 import {StyleSheet, Text, View,TouchableOpacity} from 'react-native';
 import React,{useEffect, useState} from 'react';
 import axios from 'react-native-axios'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 const MenuLivreur = (props) => {
   const [nom,setNom]=useState('')
 
-      useEffect(()=>{
-        axios
-        .post(`http://10.0.2.2:3001/api/getNom`, {
-          email: props.route.params.Email,
-        })
-        .then(res => {
-          // console.log(res);
-          console.log(res.data);
-          setNom(res.data)
-        })
-        .catch(error => {
-          if (error.response) {
-            console.log('rror sur rsp');
-          } else if (error.request) {
-            console.log('error sur requet');
-          }
-        });
-      },[])
+      // useEffect(()=>{
+      //   axios
+      //   .post(`http://10.0.2.2:3001/api/getNom`, {
+      //     email: props.route.params.Email,
+      //   })
+      //   .then(res => {
+      //     // console.log(res);
+      //     console.log(res.data);
+      //     setNom(res.data)
+      //   })
+      //   .catch(error => {
+      //     if (error.response) {
+      //       console.log('rror sur rsp');
+      //     } else if (error.request) {
+      //       console.log('error sur requet');
+      //     }
+      //   });
+      // },[])
   return (
     <View style={styles.wallet}>
       <View>
@@ -38,14 +39,18 @@ const MenuLivreur = (props) => {
             style={{
               width: 54,
               height: 54,
-              borderRadius: 7,
+              borderRadius: 30,
               backgroundColor: 'gray',
               alignSelf: 'center',
               top: 50,
-              backgroundColor:'#8C7974'
+              backgroundColor:'#8C7974',
+              justifyContent:'center',
+              alignItems:"center"
             }}
             onPress={()=>props.navigation.push('ViewPayementPoint',{Email: props.route.params.Email})}
-            ></TouchableOpacity>
+            >
+              <FontAwesome5Icon name='coins' size={35} color="#ffff" />
+            </TouchableOpacity>
           <Text
             style={{
               alignSelf: 'center',
@@ -64,16 +69,19 @@ const MenuLivreur = (props) => {
             style={{
               width: 54,
               height: 54,
-              borderRadius: 7,
+              borderRadius: 30,
               backgroundColor: 'gray',
               alignSelf: 'center',
               top: 50,
-              backgroundColor:'#8C7974'
-
+              backgroundColor:'#8C7974',
+              justifyContent:'center',
+              alignItems:"center"
 
             }}
             onPress={()=>props.navigation.push('WalletLivreur',{Email: props.route.params.Email})}
-            ></TouchableOpacity>
+            >
+              <FontAwesome5Icon name='wallet' color="#ffff" size={30} />
+            </TouchableOpacity>
           <Text
             style={{
               alignSelf: 'center',
@@ -91,16 +99,19 @@ const MenuLivreur = (props) => {
             style={{
               width: 54,
               height: 54,
-              borderRadius: 7,
+              borderRadius: 30,
               backgroundColor: 'gray',
               alignSelf: 'center',
               top: 50,
-              backgroundColor:'#8C7974'
+              backgroundColor:'#8C7974',
+              justifyContent:'center',
+              alignItems:"center"
               
             }}
-            onPress={()=>props.navigation.push('ViewPayementEspece')}
+            onPress={()=>props.navigation.push('ViewPayementEspece')}>
 
-            ></TouchableOpacity>
+              <FontAwesome5Icon name='hand-holding' size={30} color="#ffff" />
+            </TouchableOpacity>
           <Text
             style={{
               alignSelf: 'center',

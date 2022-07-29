@@ -1,9 +1,7 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
-
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const WelcomePage = props => {
-
-  
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
@@ -15,9 +13,10 @@ const WelcomePage = props => {
           style={styles.button}
           onPress={() => props.navigation.navigate('Login')}>
           <Text
-            style={{fontWeight: 'bold', alignSelf: 'center', color: '#4D3A34'}}>
+            style={{fontWeight: 'bold', color: '#4D3A34', marginRight:20}}>
             COMMENCER
           </Text>
+          <FontAwesome5 name='arrow-right' size={20} color='#4D3A34' />
         </TouchableOpacity>
       </View>
     </View>
@@ -49,5 +48,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
     borderRadius: 12,
     justifyContent: 'center',
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center'
   },
 });

@@ -8,6 +8,7 @@ import {
 import React, {useEffect, useState} from 'react';
 
 import axios from 'react-native-axios';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function ViewPayementEspece() {
   const [adresse, setAdresse] = useState(0);
@@ -91,10 +92,14 @@ export default function ViewPayementEspece() {
             justifyContent: 'center',
             borderRadius: 17,
             backgroundColor: '#ffff',
+            alignItems:'center',
+            display:'flex',
+            flexDirection:'row'
           }}
           onPress={sendPoint}>
+            <FontAwesome5Icon  name='paper-plane' size={18} color="#4D3A34" />
           <Text
-            style={{textAlign: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
+            style={{textAlign: 'center', fontWeight: 'bold', color: '#4D3A34',marginLeft:10}}>
             Envoyer
           </Text>
         </TouchableOpacity>

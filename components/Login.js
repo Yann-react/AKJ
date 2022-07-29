@@ -8,6 +8,8 @@ import {
   ImageBackground,
 } from 'react-native';
 import React ,{useState} from 'react';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 
 const Login = props => {
 
@@ -45,7 +47,7 @@ const Login = props => {
             fontSize: 20,
             fontWeight: 'bold',
             marginTop: 10,
-            color: '#45342F',
+            color: '#ffff',
           }}>
           OU
         </Text>
@@ -58,9 +60,13 @@ const Login = props => {
             borderRadius: 8,
             justifyContent: 'center',
             backgroundColor: '#ffff',
+            display:'flex',
+            flexDirection:'row',
+            alignItems:'center'
           }}>
+            <FontAwesome5 name='google' size={15}  color="#4D3A34"/>
           <Text
-            style={{alignSelf: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
+            style={{ fontWeight: 'bold', color: '#4D3A34',marginLeft:10}}>
             Continuez sur Google
           </Text>
         </TouchableOpacity>

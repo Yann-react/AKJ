@@ -7,10 +7,11 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'react-native-axios';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 export default function ViewPayementPoint(props) {
   const [adresse, setAdresse] = useState(0);
   const [montant, setMontant] = useState(0);
-  const [code,setCode]= useState(0)
+  const [code, setCode] = useState(0);
   const [id, setId] = useState('');
 
   const receivePoint = () => {
@@ -33,7 +34,7 @@ export default function ViewPayementPoint(props) {
       });
     axios
       .put(`http://10.0.2.2:3001/api/sendPoint/${id}`, {
-        solde:solde + montant,
+        solde: solde + montant,
       })
       .then(res => {
         // console.log(res)
@@ -47,24 +48,24 @@ export default function ViewPayementPoint(props) {
         }
       });
   };
-  useEffect(()=>{
-    axios
-    .post(`http://10.0.2.2:3001/api/getAdresse`, {
-      email: props.route.params.Email,
-    })
-    .then(res => {
-      // console.log(res);
-      console.log(res.data);
-      setCode(res.data)
-    })
-    .catch(error => {
-      if (error.response) {
-        console.log('rror sur rsp');
-      } else if (error.request) {
-        console.log('error sur requet');
-      }
-    });
-  },[])
+  // useEffect(() => {
+  //   axios
+  //     .post(`http://10.0.2.2:3001/api/getAdresse`, {
+  //       email: props.route.params.Email,
+  //     })
+  //     .then(res => {
+  //       // console.log(res);
+  //       console.log(res.data);
+  //       setCode(res.data);
+  //     })
+  //     .catch(error => {
+  //       if (error.response) {
+  //         console.log('rror sur rsp');
+  //       } else if (error.request) {
+  //         console.log('error sur requet');
+  //       }
+  //     });
+  // }, []);
   return (
     <View style={styles.wallet}>
       <View
@@ -73,9 +74,17 @@ export default function ViewPayementPoint(props) {
           // height: 1,
           justifyContent: 'space-between',
           marginTop: 150,
-          paddingTop:50
+          paddingTop: 50,
         }}>
-          <Text style={{alignSelf:"center",fontSize:20,fontWeight:"bold",color:"#ffff"}}>Votre Adresse : {code} </Text>
+        <Text
+          style={{
+            alignSelf: 'center',
+            fontSize: 20,
+            fontWeight: 'bold',
+            color: '#ffff',
+          }}>
+          Votre Adresse : {code}{' '}
+        </Text>
         <TextInput
           placeholder="Adresse du destinataire"
           style={{
@@ -95,6 +104,9 @@ export default function ViewPayementPoint(props) {
             alignSelf: 'center',
             borderRadius: 13,
             borderColor: '#948A8A',
+            alignItems:'center',
+            display:'flex',
+            flexDirection:'row'
           }}
           onChangeText={montant => setMontant(montant)}
         />
@@ -107,10 +119,15 @@ export default function ViewPayementPoint(props) {
             justifyContent: 'center',
             borderRadius: 17,
             backgroundColor: '#ffff',
+            alignItems:'center',
+            display:'flex',
+            flexDirection:'row'
           }}
           onPress={receivePoint}>
+          <FontAwesome5Icon name="paper-plane" size={18} color="#4D3A34" />
+
           <Text
-            style={{textAlign: 'center', fontWeight: 'bold', color: '#4D3A34'}}>
+            style={{textAlign: 'center', fontWeight: 'bold', color: '#4D3A34',marginLeft:10}}>
             Envoyer
           </Text>
         </TouchableOpacity>
