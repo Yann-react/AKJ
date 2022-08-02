@@ -15,6 +15,7 @@ import ViewPayementEspece from './components/ViewPayementEspece';
 import ViewPayementPoint from './components/ViewPayementPoint';
 import ViewScan from './components/ViewScan';
 import {ViewPropTypes} from 'deprecated-react-native-prop-types';
+import ViewDisconnect from './components/ViewDisconnect';
 
 
 const {Navigator, Screen} = createNativeStackNavigator();
@@ -22,7 +23,7 @@ const {Navigator, Screen} = createNativeStackNavigator();
 const App = () => {
   return (
     <View style={{flex: 1}}>
-       <NavigationContainer>
+      <NavigationContainer>
         <Navigator>
           <Screen
             name="WelcomePage"
@@ -64,20 +65,36 @@ const App = () => {
           <Screen name="WalletClient" component={WalletClient} />
           <Screen name="WalletLivreur" component={WalletLivreur} />
           <Screen name="DetailComponent" component={DetailComponent} />
-          <Screen name="MenuLivreur" component={MenuLivreur} />
-          <Screen name="ViewPayementEspece" component={ViewPayementEspece} />
-          <Screen name="ViewPayementPoint" component={ViewPayementPoint} /> 
+          <Screen name="MenuLivreur" component={MenuLivreur} options={option=>{
+            return {
+              headerShown:false
+            }
+          }} />
+          <Screen name="ViewPayementEspece" component={ViewPayementEspece}  options={option => {
+              return {
+                headerTintColor: '#ffff',
+                headerStyle: {backgroundColor: '#58413A'},
+              };
+            }}/>
+          <Screen name="ViewPayementPoint" component={ViewPayementPoint}  options={option => {
+              return {
+                headerTintColor: '#ffff',
+                headerStyle: {backgroundColor: '#58413A'},
+              };
+            }} />
+            <Screen name="Profile" component={ViewDisconnect} />
           {/* <WelcomePage /> */}
           {/* <Login /> */}
           {/* <LoginSuite /> */}
           {/* <SignIn /> */}
-          {/* <WalletClient />   */}
+          {/* <WalletClient /> */}
           {/* <DetailComponent /> */}
           {/* <WalletLivreur /> */}
           {/* <MenuLivreur /> */}
           {/* <ViewPayementEspece /> */}
           {/* <ViewScan /> */}
           {/* <ViewPayementPoint /> */}
+          {/* <ViewDisconnect /> */}
         </Navigator>
       </NavigationContainer>
     </View>

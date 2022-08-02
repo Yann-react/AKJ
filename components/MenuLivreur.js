@@ -1,28 +1,30 @@
-import {StyleSheet, Text, View,TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View,TouchableOpacity, Dimensions} from 'react-native';
 import React,{useEffect, useState} from 'react';
 import axios from 'react-native-axios'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+
+const {height,width} = Dimensions.get('window')
 const MenuLivreur = (props) => {
   const [nom,setNom]=useState('')
 
-      // useEffect(()=>{
-      //   axios
-      //   .post(`http://10.0.2.2:3001/api/getNom`, {
-      //     email: props.route.params.Email,
-      //   })
-      //   .then(res => {
-      //     // console.log(res);
-      //     console.log(res.data);
-      //     setNom(res.data)
-      //   })
-      //   .catch(error => {
-      //     if (error.response) {
-      //       console.log('rror sur rsp');
-      //     } else if (error.request) {
-      //       console.log('error sur requet');
-      //     }
-      //   });
-      // },[])
+      useEffect(()=>{
+        axios
+        .post(`http://10.0.2.2:3001/api/getNom`, {
+          email: props.route.params.Email,
+        })
+        .then(res => {
+          // console.log(res);
+          console.log(res.data.nom);
+          setNom(res.data.nom)
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log('rror sur rsp');
+          } else if (error.request) {
+            console.log('error sur requet');
+          }
+        });
+      },[])
   return (
     <View style={styles.wallet}>
       <View>
@@ -32,7 +34,7 @@ const MenuLivreur = (props) => {
           {nom}
         </Text>
       </View>
-      <View style={{display:'flex',flexDirection:'row',justifyContent:'center',justifyContent:'space-evenly',marginTop:290}}>
+      <View style={{display:'flex',flexDirection:'row',justifyContent:'center',justifyContent:'space-evenly',marginTop:height*0.33}}>
          <View>
 
           <TouchableOpacity
@@ -63,7 +65,7 @@ const MenuLivreur = (props) => {
             Payement par point
           </Text>
          </View>
-         <View>
+         {/* <View>
 
           <TouchableOpacity
             style={{
@@ -92,7 +94,7 @@ const MenuLivreur = (props) => {
             >
             Porte Feuille
           </Text>
-         </View>
+         </View> */}
          <View>
 
           <TouchableOpacity

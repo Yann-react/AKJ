@@ -5,9 +5,13 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  Dimensions,
+  ScrollView
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'react-native-axios';
+
+const {height,width}=Dimensions.get('window')
 
 const Signin = props => {
   const [nom, setNom] = useState('');
@@ -57,6 +61,7 @@ const Signin = props => {
   },[])
 
   return (
+    <ScrollView>
     <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
       <View style={{flex: 1}}>
         <Image source={require('../assets/akj.jpg')} style={styles.image} />
@@ -72,15 +77,16 @@ const Signin = props => {
         </Text>
       </View>
       <View style={styles.boxLog}>
-        <View>
+        <View style={{bottom:width*0.1}}>
           <TextInput
             style={{
               backgroundColor: '#8C7974',
               borderRadius: 8,
-              width: '90%',
+              width: width*0.86,
+
               alignSelf: 'center',
-              bottom: 70,
-              marginBottom: 30,
+              // bottom: 70,
+              // marginTop: height*,
             }}
             placeholder="Nom"
             onChangeText={nom => setNom(nom)}
@@ -90,9 +96,11 @@ const Signin = props => {
             style={{
               backgroundColor: '#8C7974',
               borderRadius: 8,
-              width: '90%',
+              width: width*0.86,
+
               alignSelf: 'center',
-              bottom: 70,
+              marginTop: height*0.04,
+
             }}
             placeholder="Email"
             onChangeText={email => setEmail(email)}
@@ -102,30 +110,31 @@ const Signin = props => {
             style={{
               backgroundColor: '#8C7974',
               borderRadius: 8,
-              width: '90%',
+              width: width*0.86,
               alignSelf: 'center',
-              bottom: 70,
-              marginTop: 30,
+              // bottom: 70,
+              marginTop: height*0.04,
+
             }}
             placeholder="Mots de passe"
             onChangeText={password => setPassword(password)}
             value={password}
           />
         </View>
-        <View style={{height: 70, width: '90%', alignSelf: 'center'}}>
-          <Text style={{marginTop: -30, color: '#4D3A34', fontWeight: 'bold'}}>
+        <View style={{height: height*0.7, width: width*0.8, alignSelf: 'center'}}>
+          <Text style={{marginBottom: height*0.01, color: '#4D3A34', fontWeight: 'bold'}}>
             * J'ai lu et j'accepte les conditions d'utilisation et la politique
             de confidentialité de akj.
           </Text>
           <TouchableOpacity
             style={{
-              width: '90%',
+              width: width*0.8,
               alignSelf: 'center',
-              height: 44,
+              height: height*0.054,
               borderRadius: 8,
               justifyContent: 'center',
               backgroundColor: '#ffff',
-              marginTop: 35,
+              marginTop: height*0.01,
             }}
             onPress={onSignUp}>
             <Text
@@ -136,6 +145,7 @@ const Signin = props => {
         </View>
       </View>
     </View>
+    </ScrollView>
   );
 };
 
@@ -143,18 +153,18 @@ export default Signin;
 
 const styles = StyleSheet.create({
   image: {
-    width: '100%',
-    height: 400,
-    top: 10,
+    width: width,
+    height:height*0.49,
   },
   boxLog: {
     flex: 1,
-    paddingTop: 120,
-    width: '95%',
+    paddingTop: width*0.2,
+    width: width*0.95,
     alignSelf: 'center',
-    bottom: 20,
     borderRadius: 10,
     backgroundColor: '#ffff',
-    opacity: 0.8,
+    opacity: 0.7,
+    alignContent:"center",
+    height:height*0.57
   },
 });

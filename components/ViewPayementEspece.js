@@ -13,10 +13,11 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 export default function ViewPayementEspece() {
   const [adresse, setAdresse] = useState(0);
   const [montant, setMontant] = useState(0);
+  const [newSolde,setNewSolde] = useState(0)
   const [id, setId] = useState('');
 
   const sendPoint = () => {
-    const nbre = montant * 0.001;
+    const nbre = montant * 0.01;
     setMontant(parseInt(nbre));
     console.log(montant);
     axios
@@ -24,8 +25,9 @@ export default function ViewPayementEspece() {
         adresse: adresse,
       })
       .then(res => {
-        setId(res.data);
-        console.log(id);
+        setId(res.data.id);
+        setNewSolde(res.data.solde)
+        console.log(res.data);
         // console.log(res.data)
       })
       .catch(error => {
@@ -37,7 +39,7 @@ export default function ViewPayementEspece() {
       });
     axios
       .put(`http://10.0.2.2:3001/api/sendPoint/${id}`, {
-        solde: montant,
+        solde: (newSolde+ montant),
       })
       .then(res => {
         // console.log(res)
@@ -68,10 +70,13 @@ export default function ViewPayementEspece() {
             alignSelf: 'center',
             borderRadius: 13,
             borderColor: '#948A8A',
+            color:'#ffff',
+            fontWeight:'bold'
           }}
           onChangeText={adresse => setAdresse(adresse)}
+          placeholderTextColor='#ffff'
         />
-        <Text style={{position: 'absolute', left: 330, top: 10}}>Scan</Text>
+        {/* <Text style={{position: 'absolute', left: 330, top: 10}}>Scan</Text> */}
         <TextInput
           placeholder="Montant payé"
           style={{
@@ -80,8 +85,12 @@ export default function ViewPayementEspece() {
             alignSelf: 'center',
             borderRadius: 13,
             borderColor: '#948A8A',
+            color:'#ffff',
+            fontWeight:'bold'
           }}
           onChangeText={montant => setMontant(montant)}
+          placeholderTextColor='#ffff'
+
         />
         <TouchableOpacity
           style={{

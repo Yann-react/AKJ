@@ -5,10 +5,11 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ImageBackground,
+  ImageBackground,Dimensions,ScrollView
 } from 'react-native';
 import React ,{useState} from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+const {height,width} = Dimensions.get('window')
 
 
 const Login = props => {
@@ -26,6 +27,7 @@ const Login = props => {
   };
 
   return (
+    <ScrollView>
     <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
       {/* <ImageBackground source={image} resizeMode="cover" style={styles.image}> */}
       <View style={{flex: 1}}>
@@ -91,6 +93,7 @@ const Login = props => {
       </View>
       {/* </ImageBackground> */}
     </View>
+    </ScrollView>
   );
 };
 
@@ -98,19 +101,20 @@ export default Login;
 
 const styles = StyleSheet.create({
   image: {
-    width: '100%',
-    height: 400,
-    top: 10,
+    width: width,
+    height:height*0.5,
   },
   boxLog: {
     flex: 1,
-    paddingTop: 110,
-    width: '95%',
-    alignSelf: 'center',
-    bottom: 20,
+    paddingTop: width*0.1,
+    width: width*0.95,
+    alignSelf: 'center',    
     borderRadius: 10,
     backgroundColor: '#ffff',
     opacity: 0.7,
+    alignContent:"center",
+    height:height*0.54
+
   },
   titleText: {
     color: '#ffff',
@@ -121,19 +125,18 @@ const styles = StyleSheet.create({
   },
   inputEmail: {
     backgroundColor: '#8C7974',
-    width: '90%',
+    width: width*0.9,
     alignSelf: 'center',
-    bottom: 70,
+    bottom:height*0.01,
     borderRadius: 8,
   },
   buttomCon: {
-    width: '90%',
+    width: width*0.82,
     alignSelf: 'center',
-    height: 44,
-    marginTop: -40,
+    height:height*0.054,
+    marginTop: height*0.02,
     borderRadius: 8,
     justifyContent: 'center',
     backgroundColor: '#ffff',
-    marginBottom: 15,
   },
 });

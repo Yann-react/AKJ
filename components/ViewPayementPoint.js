@@ -11,18 +11,23 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 export default function ViewPayementPoint(props) {
   const [adresse, setAdresse] = useState(0);
   const [montant, setMontant] = useState(0);
+  const [newSoldeD,setNewSoldeD] = useState(0)
+  const [newSolde,setNewSolde] = useState(0)
+
   const [code, setCode] = useState(0);
   const [id, setId] = useState('');
+  const [idR, setIdR] = useState('');
 
   const receivePoint = () => {
-    console.log(montant);
+    // console.log(montant);
     axios
       .post(`http://10.0.2.2:3001/api/getId`, {
         adresse: adresse,
       })
       .then(res => {
-        setId(res.data);
-        console.log(id);
+        setId(res.data.id);
+        setNewSoldeD(res.data.solde)
+        console.log(res.data.solde);
         // console.log(res.data)
       })
       .catch(error => {
@@ -34,11 +39,44 @@ export default function ViewPayementPoint(props) {
       });
     axios
       .put(`http://10.0.2.2:3001/api/sendPoint/${id}`, {
-        solde: solde + montant,
+        solde: (newSoldeD - montant),
       })
       .then(res => {
         // console.log(res)
         console.log('ok');
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error);
+        } else if (error.request) {
+          console.log('error sur requet');
+        }
+      });
+      // axios
+      // .put(`http://10.0.2.2:3001/api/sendPoint/${idR}`, {
+      //   solde: (newSolde + montant),
+      // })
+      // .then(res => {
+      //   // console.log(res)
+      //   console.log('ok');
+      // })
+      // .catch(error => {
+      //   if (error.response) {
+      //     console.log('rror sur rsp');
+      //   } else if (error.request) {
+      //     console.log('error sur requet');
+      //   }
+      // });
+  };
+  useEffect(() => {
+    axios
+      .post(`http://10.0.2.2:3001/api/getAdresse`, {
+        email: props.route.params.Email,
+      })
+      .then(res => {
+        // console.log(res);
+        // console.log(res.data);
+        setCode(res.data.adresse);
       })
       .catch(error => {
         if (error.response) {
@@ -47,25 +85,25 @@ export default function ViewPayementPoint(props) {
           console.log('error sur requet');
         }
       });
-  };
-  // useEffect(() => {
-  //   axios
-  //     .post(`http://10.0.2.2:3001/api/getAdresse`, {
-  //       email: props.route.params.Email,
-  //     })
-  //     .then(res => {
-  //       // console.log(res);
-  //       console.log(res.data);
-  //       setCode(res.data);
-  //     })
-  //     .catch(error => {
-  //       if (error.response) {
-  //         console.log('rror sur rsp');
-  //       } else if (error.request) {
-  //         console.log('error sur requet');
-  //       }
-  //     });
-  // }, []);
+      console.log(code)
+      axios
+      .post(`http://10.0.2.2:3001/api/getId`, {
+        adresse: code,
+      })
+      .then(res => {
+        setIdR(res.data.id);
+        setNewSolde(res.data.solde)
+        console.log(res.data.id);
+        // console.log(res.data)
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log('rror sur rsp');
+        } else if (error.request) {
+          console.log('error sur requet');
+        }
+      });
+  }, []);
   return (
     <View style={styles.wallet}>
       <View
@@ -76,15 +114,7 @@ export default function ViewPayementPoint(props) {
           marginTop: 150,
           paddingTop: 50,
         }}>
-        <Text
-          style={{
-            alignSelf: 'center',
-            fontSize: 20,
-            fontWeight: 'bold',
-            color: '#ffff',
-          }}>
-          Votre Adresse : {code}{' '}
-        </Text>
+        
         <TextInput
           placeholder="Adresse du destinataire"
           style={{
@@ -93,8 +123,11 @@ export default function ViewPayementPoint(props) {
             alignSelf: 'center',
             borderRadius: 13,
             borderColor: '#948A8A',
+            color:'#ffff',
+            fontWeight:'bold'
           }}
           onChangeText={adresse => setAdresse(adresse)}
+          placeholderTextColor='#ffff'
         />
         <TextInput
           placeholder="Point a retirer"
@@ -106,9 +139,13 @@ export default function ViewPayementPoint(props) {
             borderColor: '#948A8A',
             alignItems:'center',
             display:'flex',
-            flexDirection:'row'
+            flexDirection:'row',
+            color:'#ffff',
+            fontWeight:'bold'
           }}
           onChangeText={montant => setMontant(montant)}
+          placeholderTextColor='#ffff'
+
         />
         <TouchableOpacity
           style={{

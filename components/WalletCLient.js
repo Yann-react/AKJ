@@ -7,46 +7,45 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 const WalletClient = props => {
   const [nom,setNom]=useState('')
   const [solde,setSolde]=useState(0)
-
-  // useEffect(() => {
-  //   axios
-  //     .post(`http://10.0.2.2:3001/api/getNom`, {
-  //       email: props.route.params.Email,
-  //     })
-  //     .then(res => {
-  //       // console.log(res);
-  //       console.log(res.data);
-  //       setNom(res.data)
-  //     })
-  //     .catch(error => {
-  //       if (error.response) {
-  //         console.log('rror sur rsp');
-  //       } else if (error.request) {
-  //         console.log('error sur requet');
-  //       }
-  //     });
-  //     axios
-  //     .post(`http://10.0.2.2:3001/api/getSolde`, {
-  //       email: props.route.params.Email,
-  //     })
-  //     .then(res => {
-  //       // console.log(res);
-  //       console.log(res.data);
-  //       setSolde(res.data)
-  //     })
-  //     .catch(error => {
-  //       if (error.response) {
-  //         console.log('rror sur rsp');
-  //       } else if (error.request) {
-  //         console.log('error sur requet');
-  //       }
-  //     });
-  // }, []);
-  // console.log(props.route.params.Email);
+  
+  useEffect(() => {
+    axios
+      .post(`http://10.0.2.2:3001/api/getNom`, {
+        email: props.route.params.Email,
+      })
+      .then(res => {
+        // console.log(res);
+        console.log(res.data);
+        setNom(res.data.nom)
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log('rror sur rsp');
+        } else if (error.request) {
+          console.log('error sur requet');
+        }
+      });
+      axios
+      .post(`http://10.0.2.2:3001/api/getSolde`, {
+        email: props.route.params.Email,
+      })
+      .then(res => {
+        // console.log(res);
+        console.log(res.data);
+        setSolde(res.data.solde)
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log('rror sur rsp');
+        } else if (error.request) {
+          console.log('error sur requet');
+        }
+      });
+  }, [solde]);
   return (
     <View style={styles.wallet}>
       <View>
-        <Text style={{color: '#ffff', fontWeight: 'bold', top: 50, left: 70}}>
+        <Text style={{color: '#ffff', fontWeight: 'bold', top: 50, left: 70}} onPress={()=>props.navigation.push('Profile',{Email: props.route.params.Email})}>
           {nom}
         </Text>
       </View>

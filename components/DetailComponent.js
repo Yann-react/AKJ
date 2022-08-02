@@ -12,7 +12,7 @@ const DetailComponent = (props) => {
     .then(res => {
       // console.log(res);
       console.log(res.data);
-      setCode(res.data)
+      setCode(res.data.adresse)
     })
     .catch(error => {
       if (error.response) {
@@ -28,7 +28,7 @@ const DetailComponent = (props) => {
     .then(res => {
       // console.log(res);
       console.log(res.data);
-      setNom(res.data)
+      setNom(res.data.nom)
     })
     .catch(error => {
       if (error.response) {

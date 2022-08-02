@@ -14,7 +14,7 @@ const WalletLivreur = (props) => {
       .then(res => {
         // console.log(res);
         console.log(res.data);
-        setNom(res.data)
+        setNom(res.data.nom)
       })
       .catch(error => {
         if (error.response) {
@@ -30,7 +30,7 @@ const WalletLivreur = (props) => {
       .then(res => {
         // console.log(res);
         console.log(res.data);
-        setSolde(res.data)
+        setSolde(res.data.solde)
       })
       .catch(error => {
         if (error.response) {

@@ -1,13 +1,14 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity, Dimensions} from 'react-native';
 import React, {useEffect} from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+const {height,width} = Dimensions.get('window')
 const WelcomePage = props => {
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
         <Image source={require('../assets/akj.jpg')} style={styles.image} />
         <Text style={styles.text}>
-          FAITE VOS ACHAT TOUT EN VOUS FAISANT DE L’ARGENT
+          Faites Vos Achats Tout En Vous Faisant De L’argent
         </Text>
         <TouchableOpacity
           style={styles.button}
@@ -27,18 +28,17 @@ export default WelcomePage;
 
 const styles = StyleSheet.create({
   image: {
-    // flex:1
-    width: '100%',
-    height: 400,
-    top: 10,
+    width: width,
+    height:height*0.54,
   },
   text: {
     color: '#ffff',
     fontSize: 30,
-    width: 320,
+    width: width/1.2,
     marginLeft: 50,
-    marginTop: 20,
+    marginTop: height*0.1,
     lineHeight: 41,
+    fontFamily:'Square-Peg'
   },
   button: {
     backgroundColor: '#ffff',
