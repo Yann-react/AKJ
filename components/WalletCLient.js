@@ -1,37 +1,34 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity,RefreshControl,Dimensions,ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TabRouter} from '@react-navigation/native';
 import axios from 'react-native-axios';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
+const {height,width} = Dimensions.get('window')
+
 const WalletClient = props => {
   const [nom,setNom]=useState('')
   const [solde,setSolde]=useState(0)
-  
-  useEffect(() => {
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+    getInfo()
+  }, []);
+  const getInfo=()=>{
     axios
-      .post(`http://10.0.2.2:3001/api/getNom`, {
+      .post(`http://192.168.1.170:3001/api/getInfo`, {
         email: props.route.params.Email,
       })
       .then(res => {
         // console.log(res);
         console.log(res.data);
         setNom(res.data.nom)
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log('rror sur rsp');
-        } else if (error.request) {
-          console.log('error sur requet');
-        }
-      });
-      axios
-      .post(`http://10.0.2.2:3001/api/getSolde`, {
-        email: props.route.params.Email,
-      })
-      .then(res => {
-        // console.log(res);
-        console.log(res.data);
         setSolde(res.data.solde)
       })
       .catch(error => {
@@ -41,8 +38,20 @@ const WalletClient = props => {
           console.log('error sur requet');
         }
       });
-  }, [solde]);
+  }
+  useEffect(() => {
+    getInfo()
+  }, []);
   return (
+    <ScrollView
+    refreshControl={
+      <RefreshControl
+      refreshing={refreshing}
+      onRefresh={onRefresh}
+      />
+    }
+    style={{borderWidth:1}}
+>
     <View style={styles.wallet}>
       <View>
         <Text style={{color: '#ffff', fontWeight: 'bold', top: 50, left: 70}} onPress={()=>props.navigation.push('Profile',{Email: props.route.params.Email})}>
@@ -75,7 +84,7 @@ const WalletClient = props => {
               
             }}
             onPress={() =>
-              props.navigation.push('DetailComponent', {
+              props.navigation.push('Adresse Wallet', {
                 Email: props.route.params.Email,
               })
             }>
@@ -93,6 +102,7 @@ const WalletClient = props => {
         </View>
       </View>
     </View>
+    </ScrollView>
   );
 };
 
@@ -102,5 +112,7 @@ const styles = StyleSheet.create({
   wallet: {
     flex: 1,
     backgroundColor: '#4D3A34',
+    height:height
+
   },
 });

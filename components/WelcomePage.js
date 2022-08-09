@@ -2,13 +2,14 @@ import {StyleSheet, Text, View, Image, TouchableOpacity, Dimensions} from 'react
 import React, {useEffect} from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const {height,width} = Dimensions.get('window')
+// require('typeface-space-mono')
 const WelcomePage = props => {
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
         <Image source={require('../assets/akj.jpg')} style={styles.image} />
         <Text style={styles.text}>
-          Faites Vos Achats Tout En Vous Faisant De L’argent
+          FAITES VOS ACHATS TOUT EN VOUS FAISANT DE L’ARGENT
         </Text>
         <TouchableOpacity
           style={styles.button}
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     marginLeft: 50,
     marginTop: height*0.1,
     lineHeight: 41,
-    fontFamily:'Square-Peg'
+    fontFamily:'SpaceMono'
   },
   button: {
     backgroundColor: '#ffff',

@@ -8,9 +8,26 @@ const {height,width}=Dimensions.get('window')
 export default function ViewDisconnect(props) {
     const [nom,setNom]=useState('')
     const [titre,setTitre]=useState('')
+
+    const logout=()=>{
+      axios
+      .post(`http://192.168.1.170:3001/api/logout`)
+      .then(res => {
+        // console.log(res);
+        console.log(res)
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error);
+        } else if (error.request) {
+          console.log('error sur requet');
+        }
+      });
+      
+    }
     useEffect(()=>{
         axios
-        .post(`http://10.0.2.2:3001/api/getNom`, {
+        .post(`http://192.168.1.170:3001/api/getInfo`, {
           email: props.route.params.Email,
         })
         .then(res => {
@@ -37,7 +54,7 @@ export default function ViewDisconnect(props) {
             </View>
         </View>
         <View style={{borderColor:'green',display:'flex',flexDirection:'column',alignItems:'center',marginTop:height*0.03}}>
-            <FontAwesome5Icon name='power-off' size={75} color='#ffff' />
+            <FontAwesome5Icon name='power-off' size={75} color='#ffff' onPress={logout} />
             <Text style={{fontSize:25,color:'#ffff',marginTop:height*0.02}}>Deconnection</Text>
         </View>
     </View>

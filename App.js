@@ -17,7 +17,6 @@ import ViewScan from './components/ViewScan';
 import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 import ViewDisconnect from './components/ViewDisconnect';
 
-
 const {Navigator, Screen} = createNativeStackNavigator();
 
 const App = () => {
@@ -29,7 +28,7 @@ const App = () => {
             name="WelcomePage"
             component={WelcomePage}
             options={options => {
-              return {headerShown:false};
+              return {headerShown: false};
             }}
           />
           <Screen
@@ -62,27 +61,50 @@ const App = () => {
               };
             }}
           />
-          <Screen name="WalletClient" component={WalletClient} />
+          <Screen
+            name="WalletClient"
+            component={WalletClient}
+            options={options => {
+              return {headerShown: false};
+            }}
+          />
           <Screen name="WalletLivreur" component={WalletLivreur} />
-          <Screen name="DetailComponent" component={DetailComponent} />
-          <Screen name="MenuLivreur" component={MenuLivreur} options={option=>{
-            return {
-              headerShown:false
-            }
-          }} />
-          <Screen name="ViewPayementEspece" component={ViewPayementEspece}  options={option => {
+          <Screen name="Adresse Wallet" component={DetailComponent}         options={option => {
               return {
                 headerTintColor: '#ffff',
                 headerStyle: {backgroundColor: '#58413A'},
               };
-            }}/>
-          <Screen name="ViewPayementPoint" component={ViewPayementPoint}  options={option => {
+            }}  />
+          <Screen
+            name="MenuLivreur"
+            component={MenuLivreur}
+            options={option => {
+              return {
+                headerShown: false,
+              };
+            }}
+          />
+          <Screen
+            name="Envoie de point"
+            component={ViewPayementEspece}
+            options={option => {
               return {
                 headerTintColor: '#ffff',
                 headerStyle: {backgroundColor: '#58413A'},
               };
-            }} />
-            <Screen name="Profile" component={ViewDisconnect} />
+            }}
+          />
+          <Screen
+            name="Retraire de point"
+            component={ViewPayementPoint}
+            options={option => {
+              return {
+                headerTintColor: '#ffff',
+                headerStyle: {backgroundColor: '#58413A'},
+              };
+            }}
+          />
+          <Screen name="Profile" component={ViewDisconnect} />
           {/* <WelcomePage /> */}
           {/* <Login /> */}
           {/* <LoginSuite /> */}

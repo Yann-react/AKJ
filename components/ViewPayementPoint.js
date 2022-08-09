@@ -3,7 +3,7 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity,
+  TouchableOpacity,Alert
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'react-native-axios';
@@ -11,23 +11,22 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 export default function ViewPayementPoint(props) {
   const [adresse, setAdresse] = useState(0);
   const [montant, setMontant] = useState(0);
-  const [newSoldeD,setNewSoldeD] = useState(0)
-  const [newSolde,setNewSolde] = useState(0)
-
-  const [code, setCode] = useState(0);
-  const [id, setId] = useState('');
-  const [idR, setIdR] = useState('');
-
+  
   const receivePoint = () => {
-    // console.log(montant);
-    axios
-      .post(`http://10.0.2.2:3001/api/getId`, {
+    axios.post(`http://192.168.1.170:3001/api/getPoint`,{
         adresse: adresse,
+        solde:montant
       })
       .then(res => {
-        setId(res.data.id);
-        setNewSoldeD(res.data.solde)
-        console.log(res.data.solde);
+        
+        console.log("nice");
+        Alert.alert(
+          "Retrait de Point",
+          "Le retrait a bien été effectué",
+          [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
         // console.log(res.data)
       })
       .catch(error => {
@@ -37,73 +36,7 @@ export default function ViewPayementPoint(props) {
           console.log('error sur requet');
         }
       });
-    axios
-      .put(`http://10.0.2.2:3001/api/sendPoint/${id}`, {
-        solde: (newSoldeD - montant),
-      })
-      .then(res => {
-        // console.log(res)
-        console.log('ok');
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(error);
-        } else if (error.request) {
-          console.log('error sur requet');
-        }
-      });
-      // axios
-      // .put(`http://10.0.2.2:3001/api/sendPoint/${idR}`, {
-      //   solde: (newSolde + montant),
-      // })
-      // .then(res => {
-      //   // console.log(res)
-      //   console.log('ok');
-      // })
-      // .catch(error => {
-      //   if (error.response) {
-      //     console.log('rror sur rsp');
-      //   } else if (error.request) {
-      //     console.log('error sur requet');
-      //   }
-      // });
   };
-  useEffect(() => {
-    axios
-      .post(`http://10.0.2.2:3001/api/getAdresse`, {
-        email: props.route.params.Email,
-      })
-      .then(res => {
-        // console.log(res);
-        // console.log(res.data);
-        setCode(res.data.adresse);
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log('rror sur rsp');
-        } else if (error.request) {
-          console.log('error sur requet');
-        }
-      });
-      console.log(code)
-      axios
-      .post(`http://10.0.2.2:3001/api/getId`, {
-        adresse: code,
-      })
-      .then(res => {
-        setIdR(res.data.id);
-        setNewSolde(res.data.solde)
-        console.log(res.data.id);
-        // console.log(res.data)
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log('rror sur rsp');
-        } else if (error.request) {
-          console.log('error sur requet');
-        }
-      });
-  }, []);
   return (
     <View style={styles.wallet}>
       <View

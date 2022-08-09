@@ -8,7 +8,7 @@ const WalletLivreur = (props) => {
   
   useEffect(() => {
     axios
-      .post(`http://10.0.2.2:3001/api/getNom`, {
+      .post(`http://192.168.1.170:3001/api/getNom`, {
         email: props.route.params.Email,
       })
       .then(res => {
@@ -24,7 +24,7 @@ const WalletLivreur = (props) => {
         }
       });
       axios
-      .post(`http://10.0.2.2:3001/api/getSolde`, {
+      .post(`http://192.168.1.170:3001/api/getSolde`, {
         email: props.route.params.Email,
       })
       .then(res => {

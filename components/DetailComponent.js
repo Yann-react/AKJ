@@ -6,28 +6,13 @@ const DetailComponent = (props) => {
   const [nom,setNom]=useState('')
   useEffect(()=>{
     axios
-    .post(`http://10.0.2.2:3001/api/getAdresse`, {
+    .post(`http://192.168.1.170:3001/api/getInfo`, {
       email: props.route.params.Email,
     })
     .then(res => {
       // console.log(res);
       console.log(res.data);
       setCode(res.data.adresse)
-    })
-    .catch(error => {
-      if (error.response) {
-        console.log('rror sur rsp');
-      } else if (error.request) {
-        console.log('error sur requet');
-      }
-    });
-    axios
-    .post(`http://10.0.2.2:3001/api/getNom`, {
-      email: props.route.params.Email,
-    })
-    .then(res => {
-      // console.log(res);
-      console.log(res.data);
       setNom(res.data.nom)
     })
     .catch(error => {
@@ -36,7 +21,7 @@ const DetailComponent = (props) => {
       } else if (error.request) {
         console.log('error sur requet');
       }
-    });   
+    });  
   },[])
  
   return (

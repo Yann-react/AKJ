@@ -9,7 +9,7 @@ const MenuLivreur = (props) => {
 
       useEffect(()=>{
         axios
-        .post(`http://10.0.2.2:3001/api/getNom`, {
+        .post(`http://192.168.1.170:3001/api/getNom`, {
           email: props.route.params.Email,
         })
         .then(res => {
@@ -49,7 +49,7 @@ const MenuLivreur = (props) => {
               justifyContent:'center',
               alignItems:"center"
             }}
-            onPress={()=>props.navigation.push('ViewPayementPoint',{Email: props.route.params.Email})}
+            onPress={()=>props.navigation.push('Retraire de point',{Email: props.route.params.Email})}
             >
               <FontAwesome5Icon name='coins' size={35} color="#ffff" />
             </TouchableOpacity>
@@ -65,36 +65,6 @@ const MenuLivreur = (props) => {
             Payement par point
           </Text>
          </View>
-         {/* <View>
-
-          <TouchableOpacity
-            style={{
-              width: 54,
-              height: 54,
-              borderRadius: 30,
-              backgroundColor: 'gray',
-              alignSelf: 'center',
-              top: 50,
-              backgroundColor:'#8C7974',
-              justifyContent:'center',
-              alignItems:"center"
-
-            }}
-            onPress={()=>props.navigation.push('WalletLivreur',{Email: props.route.params.Email})}
-            >
-              <FontAwesome5Icon name='wallet' color="#ffff" size={30} />
-            </TouchableOpacity>
-          <Text
-            style={{
-              alignSelf: 'center',
-              top: 60,
-              fontWeight: 'bold',
-              color:'#ffff'
-            }} 
-            >
-            Porte Feuille
-          </Text>
-         </View> */}
          <View>
 
           <TouchableOpacity
@@ -110,7 +80,7 @@ const MenuLivreur = (props) => {
               alignItems:"center"
               
             }}
-            onPress={()=>props.navigation.push('ViewPayementEspece')}>
+            onPress={()=>props.navigation.push('Envoie de point')}>
 
               <FontAwesome5Icon name='hand-holding' size={30} color="#ffff" />
             </TouchableOpacity>

@@ -3,7 +3,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View,Alert
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -13,37 +13,24 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 export default function ViewPayementEspece() {
   const [adresse, setAdresse] = useState(0);
   const [montant, setMontant] = useState(0);
-  const [newSolde,setNewSolde] = useState(0)
-  const [id, setId] = useState('');
 
   const sendPoint = () => {
-    const nbre = montant * 0.01;
-    setMontant(parseInt(nbre));
-    console.log(montant);
     axios
-      .post(`http://10.0.2.2:3001/api/getId`, {
+      .post(`http://192.168.1.170:3001/api/sendPoint`, {
         adresse: adresse,
+        solde:montant
       })
       .then(res => {
-        setId(res.data.id);
-        setNewSolde(res.data.solde)
-        console.log(res.data);
+       
+        console.log("nice");
         // console.log(res.data)
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log('rror sur rsp');
-        } else if (error.request) {
-          console.log('error sur requet');
-        }
-      });
-    axios
-      .put(`http://10.0.2.2:3001/api/sendPoint/${id}`, {
-        solde: (newSolde+ montant),
-      })
-      .then(res => {
-        // console.log(res)
-        console.log('ok');
+        Alert.alert(
+          "Ajout de Point",
+          "L'ajout a bien été effectué",
+          [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
       })
       .catch(error => {
         if (error.response) {
