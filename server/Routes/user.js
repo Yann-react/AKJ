@@ -8,16 +8,16 @@ const router = express.Router();
 router.post("/signIn", userCtr.createUser);
   
 
-router.get("/message",auth, userCtr.test);
+router.get("/message",userCtr.test);
   
 
-router.post("/getInfo",auth,userCtr.getInfoUser);
+router.post("/getInfo",userCtr.getInfoUser);
   
   
-router.post("/sendPoint",auth,userCtr.sendPoint);
+router.post("/sendPoint",userCtr.sendPoint);
   
   
-router.post("/getPoint",auth, userCtr.getPoint);
+router.post("/getPoint", userCtr.getPoint);
   
   
 router.post("/Login",userCtr.login);

@@ -33,12 +33,9 @@ res.status(200).send({ message: "Hello from the server !" })
 
 
 exports.getInfoUser= (req, res, next) => {
-    User.findOne({ email: req.body.email })
+    User.findOne({ user_id: req.body.userId })
       .then((things) =>
         res.status(200).json({
-          token: jwt.sign({ userId: things._id }, "RANDOM_TOKEN_SECRET", {
-            expiresIn: "24h",
-          }),
           titre: things.titre,
           nom: things.nom,
           solde: things.solde,
@@ -108,7 +105,7 @@ exports.getPoint = async (req, res, next) => {
             res.status(200).json({
               titre: user.titre,
               userId: user._id,
-              token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+              token: jwt.sign({ userId: user._id , email:user.email}, "RANDOM_TOKEN_SECRET", {
                 expiresIn: "24h",
               }),
             });
