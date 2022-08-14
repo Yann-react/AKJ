@@ -2,35 +2,49 @@ import {StyleSheet, Text, View,TouchableOpacity, Dimensions} from 'react-native'
 import React,{useEffect, useState} from 'react';
 import axios from 'react-native-axios'
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { getToken } from '../service/apiService';
 
 const {height,width} = Dimensions.get('window')
 const MenuLivreur = (props) => {
   const [nom,setNom]=useState('')
-
+  const [email,setEmail] = useState('')
+  
+  const getInfo=()=>{
+    axios
+    .post(`http://10.0.2.2:3001/api/getInfo`, {
+      email: email
+    })
+    .then(res => {
+      // console.log(res);
+      console.log(res.data.nom);
+      setNom(res.data.nom)
+    })
+    .catch(error => {
+      if (error.response) {
+        console.log('rror sur rsp');
+      } else if (error.request) {
+        console.log('error sur requet');
+      }
+    });
+  } 
       useEffect(()=>{
-        axios
-        .post(`http://192.168.1.170:3001/api/getNom`, {
-          email: props.route.params.Email,
-        })
-        .then(res => {
-          // console.log(res);
-          console.log(res.data.nom);
-          setNom(res.data.nom)
-        })
-        .catch(error => {
-          if (error.response) {
-            console.log('rror sur rsp');
-          } else if (error.request) {
-            console.log('error sur requet');
-          }
-        });
-      },[])
+        getToken()
+    .then((res)=>{
+      console.log("Data response wallet: ",res)
+      setEmail(res.email)
+    })
+    .catch((e)=>{
+      console.log("Error Data "+e)
+    })
+    getInfo()
+      },[email])
   return (
     <View style={styles.wallet}>
       <View>
         <Text style={{fontWeight: 'bold', top: 50, left: 70,
               color:'#ffff'
-            }}>
+            }}
+            onPress={()=>props.navigation.push('Profile')}>
           {nom}
         </Text>
       </View>
@@ -49,7 +63,7 @@ const MenuLivreur = (props) => {
               justifyContent:'center',
               alignItems:"center"
             }}
-            onPress={()=>props.navigation.push('Retraire de point',{Email: props.route.params.Email})}
+            onPress={()=>props.navigation.push('Retraire de point')}
             >
               <FontAwesome5Icon name='coins' size={35} color="#ffff" />
             </TouchableOpacity>

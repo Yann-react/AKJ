@@ -16,7 +16,7 @@ export default function ViewPayementEspece() {
 
   const sendPoint = () => {
     axios
-      .post(`http://192.168.1.170:3001/api/sendPoint`, {
+      .post(`http://10.0.2.2:3001/api/sendPoint`, {
         adresse: adresse,
         solde:montant
       })

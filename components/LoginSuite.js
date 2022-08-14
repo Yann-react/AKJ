@@ -8,34 +8,38 @@ import {
   Dimensions,ScrollView
 } from 'react-native';
 
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import axios from 'react-native-axios'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { storeToken } from '../service/apiService';
+import { VerifyContext } from '../App';
 const {height,width}= Dimensions.get('window')
 
 const LoginSuite = props => {
   const [password, setPassword] = useState('');
   const [nom,setNom]=useState('')
   const [solde,setSolde]=useState('')
+  // const [userToken,setUserToken]=useState(null)
+  // const [userInfo,setUserInfo]=useState(null)
+
+  const [homeShow,setHomeShow] = useContext(VerifyContext)
+
   const onLogin = () => {
-    axios.post(`http://192.168.1.170:3001/api/Login`,
+    axios.post(`http://10.0.2.2:3001/api/Login`,
     {email:props.route.params.Email,
     password:password
   })
     .then(res => {
         // console.log(res);
-        // console.log(res.data)
-      // console.log(res.data.succes)
-      // console.log(res.data.titre)
-      if(res.data.titre == 'client'){
-        props.navigation.push("WalletClient",{
-          Email: props.route.params.Email
-        })
-      }else{
-        props.navigation.push("MenuLivreur",{
-          Email: props.route.params.Email
-        })
-      }
+        console.log("dataddsds", res.data)
+           storeToken(res.data)
+           setHomeShow(true)
+          if(res.data.titre == 'client'){
+          props.navigation.push("WalletClient")
+         }else{
+          props.navigation.push("MenuLivreur")
+        }
+        
     })
     .catch(error =>{
       if(error.response){
@@ -44,7 +48,6 @@ const LoginSuite = props => {
       console.log("error sur requet")
       }                  
 })
-  
   };
   return (
     <ScrollView>

@@ -13,7 +13,7 @@ export default function ViewPayementPoint(props) {
   const [montant, setMontant] = useState(0);
   
   const receivePoint = () => {
-    axios.post(`http://192.168.1.170:3001/api/getPoint`,{
+    axios.post(`http://10.0.2.2:3001/api/getPoint`,{
         adresse: adresse,
         solde:montant
       })

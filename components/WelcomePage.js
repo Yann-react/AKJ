@@ -1,15 +1,20 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity, Dimensions} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { getToken } from '../service/apiService';
+import { VerifyContext } from '../App';
 const {height,width} = Dimensions.get('window')
 // require('typeface-space-mono')
 const WelcomePage = props => {
+      // const {user,setUser} = useContext(UserContext)
+    const [homeShow,setHomeShow] = useContext(VerifyContext)
+    
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
         <Image source={require('../assets/akj.jpg')} style={styles.image} />
         <Text style={styles.text}>
-          FAITES VOS ACHATS TOUT EN VOUS FAISANT DE L’ARGENT
+          FAITES VOS ACHATS TOUT EN VOUS FAISANT DE L’ARGENT 
         </Text>
         <TouchableOpacity
           style={styles.button}

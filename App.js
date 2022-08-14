@@ -1,7 +1,8 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState,useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import WelcomePage from './components/WelcomePage';
 import Login from './components/Login';
@@ -16,95 +17,144 @@ import ViewPayementPoint from './components/ViewPayementPoint';
 import ViewScan from './components/ViewScan';
 import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 import ViewDisconnect from './components/ViewDisconnect';
-
+import { getToken } from './service/apiService';
+import { UserContext } from './context/UserContext';
 const {Navigator, Screen} = createNativeStackNavigator();
 
-const App = () => {
+export  const VerifyContext = React.createContext()
+
+const App = ({props}) => {
+  // const [islogged, setIsLogged] = useState(false);
+  // const [user,setUser] = useContext(UserContext)
+  const [homeShow,setHomeShow] = useState(false)
+
+  const [token, setToken] = useState('');
+  const [titre, setTitre] = useState('');
+
+  useEffect(() => {
+    getToken()
+    .then((res)=>{
+        console.log(res)
+        setToken(res)
+        setTitre(res.titre)
+        console.log(titre,'et',token)
+    })
+    .catch((e)=>{
+      console.log(e)
+    })
+    // const verify = async () => {
+      
+    //   if (titre==null) {
+    //     setIsLogged(true);
+    //   } else {
+    //     setIsLogged(false);
+    //   }
+    //   console.log(islogged);
+    // };
+  }, [token]);
   return (
+    
     <View style={{flex: 1}}>
+            <VerifyContext.Provider value={[homeShow,setHomeShow]}>
+
       <NavigationContainer>
         <Navigator>
-          <Screen
-            name="WelcomePage"
-            component={WelcomePage}
-            options={options => {
-              return {headerShown: false};
-            }}
-          />
-          <Screen
-            name="Login"
-            component={Login}
-            options={option => {
-              return {
-                headerTintColor: '#ffff',
-                headerStyle: {backgroundColor: '#58413A'},
-              };
-            }}
-          />
-          <Screen
-            name="LoginSuite"
-            component={LoginSuite}
-            options={option => {
-              return {
-                headerTintColor: '#ffff',
-                headerStyle: {backgroundColor: '#58413A'},
-              };
-            }}
-          />
-          <Screen
-            name="SignIn"
-            component={SignIn}
-            options={option => {
-              return {
-                headerTintColor: '#ffff',
-                headerStyle: {backgroundColor: '#58413A'},
-              };
-            }}
-          />
-          <Screen
-            name="WalletClient"
-            component={WalletClient}
-            options={options => {
-              return {headerShown: false};
-            }}
-          />
-          <Screen name="WalletLivreur" component={WalletLivreur} />
-          <Screen name="Adresse Wallet" component={DetailComponent}         options={option => {
-              return {
-                headerTintColor: '#ffff',
-                headerStyle: {backgroundColor: '#58413A'},
-              };
-            }}  />
-          <Screen
-            name="MenuLivreur"
-            component={MenuLivreur}
-            options={option => {
-              return {
-                headerShown: false,
-              };
-            }}
-          />
-          <Screen
-            name="Envoie de point"
-            component={ViewPayementEspece}
-            options={option => {
-              return {
-                headerTintColor: '#ffff',
-                headerStyle: {backgroundColor: '#58413A'},
-              };
-            }}
-          />
-          <Screen
-            name="Retraire de point"
-            component={ViewPayementPoint}
-            options={option => {
-              return {
-                headerTintColor: '#ffff',
-                headerStyle: {backgroundColor: '#58413A'},
-              };
-            }}
-          />
-          <Screen name="Profile" component={ViewDisconnect} />
+           {homeShow == false  && token == null ?(
+            <>
+             <Screen
+               name="WelcomePage"
+               component={WelcomePage}
+               options={options => {
+                 return {headerShown: false};
+               }}
+             />
+             <Screen
+               name="Login"
+               component={Login}
+               options={option => {
+                 return {
+                   headerTintColor: '#ffff',
+                   headerStyle: {backgroundColor: '#58413A'},
+                 };
+               }}
+             />
+             <Screen
+               name="LoginSuite"
+               component={LoginSuite}
+               options={option => {
+                 return {
+                   headerTintColor: '#ffff',
+                   headerStyle: {backgroundColor: '#58413A'},
+                 };
+               }}
+             />
+             <Screen
+               name="SignIn"
+               component={SignIn}
+               options={option => {
+                 return {
+                   headerTintColor: '#ffff',
+                   headerStyle: {backgroundColor: '#58413A'},
+                 };
+               }}
+             />
+          </>
+           ):(
+            <>
+            
+            <Screen
+              name="WalletClient"
+              component={WalletClient}
+              options={options => {
+                return {headerShown: false};
+              }}
+            />
+            <Screen
+              name="Adresse Wallet"
+              component={DetailComponent}
+              options={option => {
+                return {
+                  headerTintColor: '#ffff',
+                  headerStyle: {backgroundColor: '#58413A'},
+                };
+              }}
+            />
+
+              <Screen
+                name="MenuLivreur"
+                component={MenuLivreur}
+                options={option => {
+                  return {
+                    headerShown: false,
+                  };
+                }}
+              />
+         
+            <Screen
+              name="Envoie de point"
+              component={ViewPayementEspece}
+              options={option => {
+                return {
+                  headerTintColor: '#ffff',
+                  headerStyle: {backgroundColor: '#58413A'},
+                };
+              }}
+            />
+            <Screen
+              name="Retraire de point"
+              component={ViewPayementPoint}
+              options={option => {
+                return {
+                  headerTintColor: '#ffff',
+                  headerStyle: {backgroundColor: '#58413A'},
+                };
+              }}
+            />
+            <Screen name="Profile" component={ViewDisconnect} />
+            </>
+           )}
+              
+       
           {/* <WelcomePage /> */}
           {/* <Login /> */}
           {/* <LoginSuite /> */}
@@ -119,7 +169,9 @@ const App = () => {
           {/* <ViewDisconnect /> */}
         </Navigator>
       </NavigationContainer>
+      </VerifyContext.Provider>
     </View>
+
   );
 };
 

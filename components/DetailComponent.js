@@ -1,14 +1,19 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import axios from 'react-native-axios'
+import { getToken } from '../service/apiService';
+
 const DetailComponent = (props) => {
   const [code,setCode]=useState(0)
   const [nom,setNom]=useState('')
-  useEffect(()=>{
+  const [email,setEmail] = useState('')
+
+  const getInfo=()=>{
     axios
-    .post(`http://192.168.1.170:3001/api/getInfo`, {
-      email: props.route.params.Email,
-    })
+    .post(`http://10.0.2.2:3001/api/getInfo`, {
+      email: email
+
+  })
     .then(res => {
       // console.log(res);
       console.log(res.data);
@@ -21,8 +26,19 @@ const DetailComponent = (props) => {
       } else if (error.request) {
         console.log('error sur requet');
       }
-    });  
-  },[])
+    }); 
+  }
+  useEffect(()=>{
+    getToken()
+    .then((res)=>{
+      setEmail(res.email)
+      console.log("Data response wallet: ",res.titre)
+    })
+    .catch((e)=>{
+      console.log("Error Data "+e)
+    })
+    getInfo() 
+  },[email])
  
   return (
     <View style={styles.wallet}>

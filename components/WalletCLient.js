@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import {TabRouter} from '@react-navigation/native';
 import axios from 'react-native-axios';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getToken } from '../service/apiService';
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -13,17 +15,18 @@ const {height,width} = Dimensions.get('window')
 const WalletClient = props => {
   const [nom,setNom]=useState('')
   const [solde,setSolde]=useState(0)
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [email,setEmail] = useState('')
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
     getInfo()
-  }, []);
-  const getInfo=()=>{
+  }, [email]);
+  const getInfo= ()=>{
     axios
-      .post(`http://192.168.1.170:3001/api/getInfo`, {
-        email: props.route.params.Email,
+      .post(`http://10.0.2.2:3001/api/getInfo`, {
+        email: email
       })
       .then(res => {
         // console.log(res);
@@ -39,9 +42,17 @@ const WalletClient = props => {
         }
       });
   }
-  useEffect(() => {
+  useEffect(()=>{
+    getToken()
+    .then((res)=>{
+      setEmail(res.email)
+      console.log("Data response wallet: ",res.titre)
+    })
+    .catch((e)=>{
+      console.log("Error Data "+e)
+    })
     getInfo()
-  }, []);
+  },[email])
   return (
     <ScrollView
     refreshControl={
@@ -50,11 +61,10 @@ const WalletClient = props => {
       onRefresh={onRefresh}
       />
     }
-    style={{borderWidth:1}}
 >
     <View style={styles.wallet}>
       <View>
-        <Text style={{color: '#ffff', fontWeight: 'bold', top: 50, left: 70}} onPress={()=>props.navigation.push('Profile',{Email: props.route.params.Email})}>
+        <Text style={{color: '#ffff', fontWeight: 'bold', top: 50, left: 70}} onPress={()=>props.navigation.push('Profile')}>
           {nom}
         </Text>
       </View>
@@ -67,7 +77,7 @@ const WalletClient = props => {
             fontSize: 80,
             fontWeight: 'bold',
           }}>
-          K {solde}
+          K {solde} 
         </Text>
         <View>
           <TouchableOpacity
@@ -84,9 +94,7 @@ const WalletClient = props => {
               
             }}
             onPress={() =>
-              props.navigation.push('Adresse Wallet', {
-                Email: props.route.params.Email,
-              })
+              props.navigation.push('Adresse Wallet')
             }>
               <FontAwesome5Icon name='wallet' size={35} color='#ffff' />
             </TouchableOpacity>
