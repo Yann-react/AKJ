@@ -30,11 +30,13 @@ export default function ViewPayementPoint(props) {
         // console.log(res.data)
       })
       .catch(error => {
-        if (error.response) {
-          console.log('rror sur rsp');
-        } else if (error.request) {
-          console.log('error sur requet');
-        }
+        Alert.alert(
+          "Retrait de Point",
+          "Adresse incorrect ou montant insuffissant",
+          [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
       });
   };
   return (

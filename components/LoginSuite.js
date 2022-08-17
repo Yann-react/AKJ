@@ -42,11 +42,13 @@ const LoginSuite = props => {
         
     })
     .catch(error =>{
-      if(error.response){
-          console.log("rror sur rsp")
-      }else if (error.request){
-      console.log("error sur requet")
-      }                  
+      Alert.alert(
+        "Connexion echoué",
+        "Email ou mots de passe incorrect",
+          [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );                  
 })
   };
   return (
