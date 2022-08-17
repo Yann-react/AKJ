@@ -150,7 +150,14 @@ const App = ({props}) => {
                 };
               }}
             />
-            <Screen name="Profile" component={ViewDisconnect} />
+            <Screen name="Profile" component={ViewDisconnect}
+                options={option => {
+                  return {
+                    headerTintColor: '#ffff',
+                    headerStyle: {backgroundColor: '#58413A'},
+                  };
+                }}
+            />
             </>
            )}
               

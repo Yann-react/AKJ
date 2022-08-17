@@ -30,7 +30,7 @@ const Signin = props => {
   }
 
   const onSignUp = () => {
-axios.post(`http://10.0.2.2:3001/api/signIn`,
+axios.post(`https://akj-k.herokuapp.com/api/signIn`,
     {email:email,
     nom:nom,
     solde:solde,
@@ -119,6 +119,8 @@ axios.post(`http://10.0.2.2:3001/api/signIn`,
             placeholder="Mots de passe"
             onChangeText={password => setPassword(password)}
             value={password}
+            secureTextEntry={true}
+
           />
         </View>
         <View style={{height: height*0.7, width: width*0.8, alignSelf: 'center'}}>

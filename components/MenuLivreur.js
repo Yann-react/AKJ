@@ -11,7 +11,7 @@ const MenuLivreur = (props) => {
   
   const getInfo=()=>{
     axios
-    .post(`http://10.0.2.2:3001/api/getInfo`, {
+    .post(`https://akj-k.herokuapp.com/api/getInfo`, {
       email: email
     })
     .then(res => {

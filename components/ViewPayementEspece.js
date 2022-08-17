@@ -16,7 +16,7 @@ export default function ViewPayementEspece() {
 
   const sendPoint = () => {
     axios
-      .post(`http://10.0.2.2:3001/api/sendPoint`, {
+      .post(`https://akj-k.herokuapp.com/api/sendPoint`, {
         adresse: adresse,
         solde:montant
       })

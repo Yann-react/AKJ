@@ -25,7 +25,7 @@ const LoginSuite = props => {
   const [homeShow,setHomeShow] = useContext(VerifyContext)
 
   const onLogin = () => {
-    axios.post(`http://10.0.2.2:3001/api/Login`,
+    axios.post(`https://akj-k.herokuapp.com/api/Login`,
     {email:props.route.params.Email,
     password:password
   })
@@ -90,6 +90,7 @@ const LoginSuite = props => {
             placeholder="Mots de passe"
             onChangeText={password => setPassword(password)}
             value={password}
+            secureTextEntry={true}
           />
         </View>
         <View style={{height: 70, width: '90%', alignSelf: 'center'}}>
