@@ -111,6 +111,7 @@ axios.post(`https://akj-k.herokuapp.com/api/signIn`,
             placeholder="Email"
             onChangeText={email => setEmail(email)}
             value={email}
+            
           />
           <TextInput
             style={{

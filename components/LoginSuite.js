@@ -122,7 +122,9 @@ const LoginSuite = props => {
               top: height*0.1,
               color: '#4D3A34',
               fontWeight: 'bold',
-            }}>
+            }}
+            onPress={()=>{props.navigation.push('Mots De Passe Oublié')}}
+            >
             Vous avez oublié votre mots de passe?
           </Text>
         </View>

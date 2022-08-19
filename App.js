@@ -19,6 +19,7 @@ import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 import ViewDisconnect from './components/ViewDisconnect';
 import { getToken } from './service/apiService';
 import { UserContext } from './context/UserContext';
+import ForgetPassword from './components/ForgetPassword';
 const {Navigator, Screen} = createNativeStackNavigator();
 
 export  const VerifyContext = React.createContext()
@@ -97,6 +98,16 @@ const App = ({props}) => {
                    headerStyle: {backgroundColor: '#58413A'},
                  };
                }}
+             />
+             <Screen
+             name='Mots De Passe Oublié'
+             component={ForgetPassword}
+             options={option => {
+              return {
+                headerTintColor: '#ffff',
+                headerStyle: {backgroundColor: '#58413A'},
+              };
+            }}
              />
           </>
            ):(
