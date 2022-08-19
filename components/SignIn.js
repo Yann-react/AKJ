@@ -45,7 +45,7 @@ axios.post(`https://akj-k.herokuapp.com/api/signIn`,
     .then(res => {
         // console.log(res);
         // console.log(res.data)
-        console.log("ok")
+        console.log(res.data)
         storeToken(res.data)
            setHomeShow(true)
         props.navigation.push("WalletClient",{
