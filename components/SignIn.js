@@ -8,8 +8,11 @@ import {
   Dimensions,
   ScrollView
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
 import axios from 'react-native-axios';
+import { storeToken } from '../service/apiService';
+import { VerifyContext } from '../App';
+
 
 const {height,width}=Dimensions.get('window')
 
@@ -20,6 +23,7 @@ const Signin = props => {
   const [solde, setSolde] = useState(200);
   const [titre, setTitre] = useState('client');
   const [adresse, setAdresse] = useState(0);
+  const [homeShow,setHomeShow] = useContext(VerifyContext)
 
   const random=()=>{
       const  nbre = parseInt(Math.random()*1000000)
@@ -42,6 +46,8 @@ axios.post(`https://akj-k.herokuapp.com/api/signIn`,
         // console.log(res);
         // console.log(res.data)
         console.log("ok")
+        storeToken(res.data)
+           setHomeShow(true)
         props.navigation.push("WalletClient",{
             Email: email
         })

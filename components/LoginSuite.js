@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  Dimensions,ScrollView
+  Dimensions,ScrollView,Alert
 } from 'react-native';
 
 import React, {useContext, useState} from 'react';

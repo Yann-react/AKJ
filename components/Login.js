@@ -5,7 +5,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ImageBackground,Dimensions,ScrollView
+  ImageBackground,Dimensions,ScrollView,Alert
 } from 'react-native';
 import React ,{useState} from 'react';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -65,7 +65,18 @@ const Login = props => {
             display:'flex',
             flexDirection:'row',
             alignItems:'center'
-          }}>
+          }}
+          onPress={()=>{
+            Alert.alert(
+              "Connexion avec google",
+              "Service momentanement indisponible",
+              [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+              ]
+            );
+          }
+        }
+          >
             <FontAwesome5 name='google' size={15}  color="#4D3A34"/>
           <Text
             style={{ fontWeight: 'bold', color: '#4D3A34',marginLeft:10}}>
