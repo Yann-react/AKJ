@@ -35,10 +35,10 @@ const App = ({props}) => {
   useEffect(() => {
     getToken()
     .then((res)=>{
-        console.log(res)
+        // console.log(res)
         setToken(res)
         setTitre(res.titre)
-        console.log(titre,'et',token)
+        // console.log(titre,'et',token)
     })
     .catch((e)=>{
       console.log(e)

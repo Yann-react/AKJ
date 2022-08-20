@@ -97,7 +97,7 @@ const Login = props => {
             Vous n'avez pas de compte ? Incription
           </Text>
           <Text
-            style={{alignSelf: 'center', color: '#4D3A34', fontWeight: 'bold'}}>
+            style={{alignSelf: 'center', color: '#4D3A34', fontWeight: 'bold'}}  onPress={()=>{props.navigation.push('Mots De Passe Oublié')}}>
             Vous avez oublié votre mots de passe?
           </Text>
         </View>

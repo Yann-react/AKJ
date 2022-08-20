@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, TouchableOpacity,RefreshControl,Dimensions,ScrollView} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity,RefreshControl,Dimensions,ScrollView,Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {TabRouter} from '@react-navigation/native';
 import axios from 'react-native-axios';
@@ -63,12 +63,16 @@ const WalletClient = props => {
     }
 >
     <View style={styles.wallet}>
-      <View>
-        <Text style={{color: '#ffff', fontWeight: 'bold', top: 50, left: 70}} onPress={()=>props.navigation.push('Profile')}>
+      <View style={{flexDirection:"row",width:width/5,justifyContent:'space-between',marginTop:height/15,marginLeft:width/15}}>
+      <Image
+            source={require('../assets/image3.jpg')}
+            style={styles.image}
+          />
+        <Text style={{color: '#ffff', fontWeight: 'bold',alignSelf:'center'}} onPress={()=>props.navigation.push('Profile')}>
           {nom}
         </Text>
       </View>
-      <View style={{top: 100, flex: 1}}>
+      <View style={{marginTop:width/20, flex: 1}}>
         <Text
           style={{
             color: '#ffff',
@@ -122,5 +126,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#4D3A34',
     height:height
 
+  },
+  image: {
+    width: width/10,
+    height: height/21,
+    borderRadius: 400 / 2,
   },
 });
