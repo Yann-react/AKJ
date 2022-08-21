@@ -21,7 +21,7 @@ const Login = props => {
   const image = require('../assets/akj.jpg');
 
   const Togo = () => {
-      props.navigation.push('LoginSuite', {
+      props.navigation.push('connexion', {
       Email:email,
             });
   };
@@ -93,8 +93,8 @@ const Login = props => {
           }}>
           <Text
             style={{alignSelf: 'center', color: '#4D3A34', fontWeight: 'bold'}}
-            onPress={() => props.navigation.push('SignIn')}>
-            Vous n'avez pas de compte ? Incription
+            onPress={() => props.navigation.push('Inscription')}>
+            Vous n'avez pas de compte ?<Text style={{textDecorationLine:"underline"}}>Inscription</Text>
           </Text>
           <Text
             style={{alignSelf: 'center', color: '#4D3A34', fontWeight: 'bold'}}  onPress={()=>{props.navigation.push('Mots De Passe Oublié')}}>

@@ -70,7 +70,7 @@ const App = ({props}) => {
                }}
              />
              <Screen
-               name="Login"
+               name="Connexion"
                component={Login}
                options={option => {
                  return {
@@ -80,7 +80,7 @@ const App = ({props}) => {
                }}
              />
              <Screen
-               name="LoginSuite"
+               name="connexion"
                component={LoginSuite}
                options={option => {
                  return {
@@ -90,7 +90,7 @@ const App = ({props}) => {
                }}
              />
              <Screen
-               name="SignIn"
+               name="Inscription"
                component={SignIn}
                options={option => {
                  return {

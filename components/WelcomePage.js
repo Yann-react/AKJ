@@ -14,20 +14,12 @@ const WelcomePage = props => {
       <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
         <Image source={require('../assets/akj.jpg')} style={styles.image} />
         <Text style={styles.text}>
-        {/* <TouchableOpacity
-          style={styles.button}
-          onPress={() => props.navigation.navigate('Login')}>
-          <Text
-            style={{fontWeight: 'bold', color: '#4D3A34', marginRight:20}}>
-            COMMENCER
-          </Text>
-          <FontAwesome5 name='arrow-right' size={20} color='#4D3A34' />
-        </TouchableOpacity> */}
+        
           FAITES VOS ACHATS TOUT EN VOUS FAISANT DE L’ARGENT 
         </Text>
         <TouchableOpacity
           style={styles.buttons}
-          onPress={() => props.navigation.navigate('Login')}>
+          onPress={() => props.navigation.navigate('Connexion')}>
           <Text
             style={{fontWeight: 'bold', color: '#4D3A34', marginRight:20}}>
             COMMENCER

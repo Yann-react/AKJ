@@ -131,10 +131,10 @@ axios.post(`https://akj-k.herokuapp.com/api/signIn`,
           />
         </View>
         <View style={{height: height*0.7, width: width*0.8, alignSelf: 'center'}}>
-          <Text style={{marginBottom: height*0.01, color: '#4D3A34', fontWeight: 'bold'}}>
+          {/* <Text style={{marginBottom: height*0.01, color: '#4D3A34', fontWeight: 'bold'}}>
             * J'ai lu et j'accepte les conditions d'utilisation et la politique
             de confidentialité de akj.
-          </Text>
+          </Text> */}
           <TouchableOpacity
             style={{
               width: width*0.8,

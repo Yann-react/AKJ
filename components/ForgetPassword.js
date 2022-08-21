@@ -27,7 +27,7 @@ export default function ForgetPassword(props) {
     .then(res => {
         // console.log(res);
         console.log("dataddsds", res.data)
-        props.navigation.push("Login")
+        props.navigation.push("Connexion")
 
          Alert.alert(
             "Changement Mots De Passe",
