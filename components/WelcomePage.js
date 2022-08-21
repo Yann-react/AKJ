@@ -14,10 +14,19 @@ const WelcomePage = props => {
       <View style={{flex: 1, backgroundColor: '#4D3A34'}}>
         <Image source={require('../assets/akj.jpg')} style={styles.image} />
         <Text style={styles.text}>
+        {/* <TouchableOpacity
+          style={styles.button}
+          onPress={() => props.navigation.navigate('Login')}>
+          <Text
+            style={{fontWeight: 'bold', color: '#4D3A34', marginRight:20}}>
+            COMMENCER
+          </Text>
+          <FontAwesome5 name='arrow-right' size={20} color='#4D3A34' />
+        </TouchableOpacity> */}
           FAITES VOS ACHATS TOUT EN VOUS FAISANT DE L’ARGENT 
         </Text>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.buttons}
           onPress={() => props.navigation.navigate('Login')}>
           <Text
             style={{fontWeight: 'bold', color: '#4D3A34', marginRight:20}}>
@@ -41,7 +50,7 @@ const styles = StyleSheet.create({
     color: '#ffff',
     fontSize: 30,
     width: width/1.2,
-    marginLeft: 50,
+    marginLeft: width*0.13,
     marginTop: height*0.1,
     lineHeight: 41,
     fontFamily:'SpaceMono'
@@ -52,6 +61,18 @@ const styles = StyleSheet.create({
     marginLeft: 50,
     height: 44,
     marginTop: 30,
+    borderRadius: 12,
+    justifyContent: 'center',
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center'
+  },
+  buttons: {
+    backgroundColor: '#ffff',
+    width: width*0.8,
+    marginLeft: width*0.12,
+    height: height*0.07,
+    marginTop: height*0.03,
     borderRadius: 12,
     justifyContent: 'center',
     display:'flex',

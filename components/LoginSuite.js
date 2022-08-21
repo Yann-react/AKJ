@@ -62,7 +62,8 @@ const LoginSuite = props => {
             fontSize: 35,
             marginTop: -130,
             fontWeight: 'bold',
-            left: 10,
+            left: width*0.04,
+
           }}>
           Connexion
         </Text>
@@ -87,7 +88,7 @@ const LoginSuite = props => {
               alignSelf: 'center',
               marginTop:height*0.05,
               borderRadius: 8,
-              height: 60,
+              height: height*0.08,
             }}
             placeholder="Mots de passe"
             onChangeText={password => setPassword(password)}
@@ -95,7 +96,7 @@ const LoginSuite = props => {
             secureTextEntry={true}
           />
         </View>
-        <View style={{height: 70, width: '90%', alignSelf: 'center'}}>
+        <View style={{height: height*0.07, width: width*0.9, alignSelf: 'center'}}>
           <TouchableOpacity
             style={{
               width: width*0.75,
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     // bottom:height*0.04,
     borderRadius: 10,
     backgroundColor: '#ffff',
-    opacity: 0.7,
+    opacity: 0.75,
     alignContent:"center",
     height:height*0.54
 

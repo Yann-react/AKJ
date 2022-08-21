@@ -72,7 +72,7 @@ export default function ForgetPassword(props) {
                 alignSelf: 'center',
                 marginTop: height * 0.05,
                 borderRadius: 8,
-                height: 60,
+              height: height*0.08,
               }}
               placeholder="Email"
               onChangeText={email => setEmail(email)}
@@ -85,7 +85,7 @@ export default function ForgetPassword(props) {
                 alignSelf: 'center',
                 marginTop: height * 0.05,
                 borderRadius: 8,
-                height: 60,
+              height: height*0.08,
               }}
               placeholder="Mots de passe"
               onChangeText={password => setPassword(password)}

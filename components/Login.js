@@ -35,7 +35,7 @@ const Login = props => {
         <Text style={styles.titleText}>Bienvenue</Text>
       </View>
       <View style={styles.boxLog}>
-        <TextInput style={styles.inputEmail} placeholder="Email" onChangeText={email=>setEmail(email)}
+        <TextInput style={styles.inputEmail} placeholder="Email:exemple@gmail.com" onChangeText={email=>setEmail(email)}
             value={email} />
         <TouchableOpacity style={styles.buttomCon} onPress={() => Togo()}>
           <Text
@@ -48,7 +48,7 @@ const Login = props => {
             alignSelf: 'center',
             fontSize: 20,
             fontWeight: 'bold',
-            marginTop: 10,
+            marginTop: height*0.01,
             color: '#ffff',
           }}>
           OU
@@ -57,8 +57,8 @@ const Login = props => {
           style={{
             width: '90%',
             alignSelf: 'center',
-            height: 44,
-            marginTop: 18,
+            height: height*0.06,
+            marginTop: height*0.018,
             borderRadius: 8,
             justifyContent: 'center',
             backgroundColor: '#ffff',
@@ -85,10 +85,10 @@ const Login = props => {
         </TouchableOpacity>
         <View
           style={{
-            marginTop: 60,
-            height: 70,
+            marginTop: height/20,
+            height:height/10,
             justifyContent: 'space-between',
-            width: '90%',
+            width:width/0.9,
             alignSelf: 'center',
           }}>
           <Text
@@ -102,7 +102,6 @@ const Login = props => {
           </Text>
         </View>
       </View>
-      {/* </ImageBackground> */}
     </View>
     </ScrollView>
   );
@@ -122,7 +121,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',    
     borderRadius: 10,
     backgroundColor: '#ffff',
-    opacity: 0.7,
+    opacity: 0.75,
     alignContent:"center",
     height:height*0.54
 
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     marginTop: -130,
     fontWeight: 'bold',
-    left: 10,
+    left: width*0.04,
   },
   inputEmail: {
     backgroundColor: '#8C7974',
