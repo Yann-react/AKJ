@@ -60,10 +60,11 @@ export default function ViewDisconnect(props) {
           alignItems: 'center',
         }}>
         <View>
-          <Image
+          <FontAwesome5Icon name='user-circle' size={160} color="#ffff" style={{}} />
+          {/* <Image
             source={require('../assets/image3.jpg')}
             style={styles.image}
-          />
+          /> */}
         </View>
         <View style={{marginTop: height * 0.01}}>
           <Text style={{fontSize: 35, color: '#ffff', fontWeight: 'bold'}}>
@@ -104,7 +105,7 @@ export default function ViewDisconnect(props) {
 
 const styles = StyleSheet.create({
   image: {
-    width: width/2,
+    width: width/2.4,
     height: height/4.2,
     borderRadius: 400 / 2,
   },

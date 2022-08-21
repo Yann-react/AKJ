@@ -111,26 +111,28 @@ const App = ({props}) => {
              />
           </>
            ):(
-            <>
-            
-            <Screen
-              name="WalletClient"
-              component={WalletClient}
-              options={options => {
-                return {headerShown: false};
-              }}
-            />
-            <Screen
-              name="Adresse Wallet"
-              component={DetailComponent}
-              options={option => {
-                return {
-                  headerTintColor: '#ffff',
-                  headerStyle: {backgroundColor: '#58413A'},
-                };
-              }}
-            />
-
+             <>
+           
+              <Screen
+                name="WalletClient"
+                component={WalletClient}
+                options={options => {
+                  return {headerShown: false};
+                }}
+              />
+              <Screen
+                name="Adresse Wallet"
+                component={DetailComponent}
+                options={option => {
+                  return {
+                    headerTintColor: '#ffff',
+                    headerStyle: {backgroundColor: '#58413A'},
+                  };
+                }}
+              />
+             
+           
+        
               <Screen
                 name="MenuLivreur"
                 component={MenuLivreur}
@@ -139,7 +141,7 @@ const App = ({props}) => {
                     headerShown: false,
                   };
                 }}
-              />
+                />
          
             <Screen
               name="Envoie de point"
@@ -150,7 +152,7 @@ const App = ({props}) => {
                   headerStyle: {backgroundColor: '#58413A'},
                 };
               }}
-            />
+              />
             <Screen
               name="Retraire de point"
               component={ViewPayementPoint}
@@ -160,7 +162,7 @@ const App = ({props}) => {
                   headerStyle: {backgroundColor: '#58413A'},
                 };
               }}
-            />
+              />
             <Screen name="Profile" component={ViewDisconnect}
                 options={option => {
                   return {
@@ -168,8 +170,9 @@ const App = ({props}) => {
                     headerStyle: {backgroundColor: '#58413A'},
                   };
                 }}
-            />
-            </>
+                />
+           
+                </>
            )}
               
        
