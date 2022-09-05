@@ -60,7 +60,7 @@ export default function ViewDisconnect(props) {
           alignItems: 'center',
         }}>
         <View>
-          <FontAwesome5Icon name='user-circle' size={160} color="#ffff" style={{}} />
+          <FontAwesome5Icon name='user-circle' size={160} color="#ffff" />
           {/* <Image
             source={require('../assets/image3.jpg')}
             style={styles.image}
