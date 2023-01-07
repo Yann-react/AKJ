@@ -21,7 +21,7 @@ export default function ViewDisconnect(props) {
   };
   const getInfo = () => {
     axios
-      .post(`https://akj-k.herokuapp.com/api/getInfo`, {
+      .post(`https://back-akj-production.up.railway.app/api/getInfo`, {
         email: email,
       })
       .then(res => {

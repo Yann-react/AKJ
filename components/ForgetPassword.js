@@ -20,7 +20,7 @@ export default function ForgetPassword(props) {
 
 
     const onChangePassword=()=>{
-        axios.post(`https://akj-k.herokuapp.com/api/forgetPassword`,
+        axios.post(`https://back-akj-production.up.railway.app/api/forgetPassword`,
     {email:email,
     password:password
   })

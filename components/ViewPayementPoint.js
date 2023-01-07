@@ -13,7 +13,7 @@ export default function ViewPayementPoint(props) {
   const [montant, setMontant] = useState(0);
   
   const receivePoint = () => {
-    axios.post(`https://akj-k.herokuapp.com/api/getPoint`,{
+    axios.post(`https://back-akj-production.up.railway.app/api/getPoint`,{
         adresse: adresse,
         solde:montant
       })
